@@ -9,6 +9,7 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine.url import URL
+import sqlalchemy.engine.url as url
 from datetime import datetime
 
 import settings
