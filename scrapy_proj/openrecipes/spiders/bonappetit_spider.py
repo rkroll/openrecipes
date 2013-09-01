@@ -20,7 +20,7 @@ class BonappetitMixin(object):
         name_path = '//meta[@property="og:title"]/@content'
         description_path = '//meta[@name="description"]/@content'
         url_path = '//meta[@property="og:url"]/@content'
-        image_path = '//meta[@property="og:image"]/@content'
+        image_path = '//*[@itemprop="image"]/@src'
         recipeYield_path = '//div[@class="time-and-yield"]/*/span[@class="yield"]/text()'
         ingredients_path = '//ul[@class="ingredients"]/li/span[@class="ingredient"]'
         datePublished_path = '//div[@class="intro"]/div[@class="display-date"]/text()[last()]'  # skip HTML comment

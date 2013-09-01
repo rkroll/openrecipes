@@ -13,3 +13,4 @@ timelib==0.2.4
 w3lib==1.2
 wsgiref==0.1.2
 zope.interface==4.0.5
+sqlalchemy==0.8.2

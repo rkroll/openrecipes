@@ -25,10 +25,13 @@ class RecipeItemLoader(ItemLoader):
 
     cookingMethod_out = Compose(TakeFirst(), trim_whitespace)
     cookTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
-    ingredients_out = Compose(MapCompose(strip_html, trim_whitespace, filter_ingredients), Join("\n"))
+    #ingredients_out = Compose(MapCompose(strip_html, trim_whitespace, filter_ingredients), Join("\n"))
+    #ingredients_out = Compose(strip_html, trim_whitespace, filter_ingredients)
+    ingredients_out = MapCompose(strip_html, trim_whitespace, filter_ingredients)
     prepTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
     recipeCategory_out = Compose(TakeFirst(), trim_whitespace)
     recipeCuisine_out = Compose(TakeFirst(), trim_whitespace)
+    recipeInstructions_out = Compose(TakeFirst(), trim_whitespace)
     recipeYield_out = Compose(TakeFirst(), strip_html, trim_whitespace)
     totalTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
 
@@ -88,6 +91,7 @@ class RecipeItem(Item):
     cookingMethod = Field()
     cookTime = Field()  # ISO 8601 Duration
     ingredients = Field()  # Text; separate with newlines ("\n")
+    #ingredients_list = filter(None, ingredients.split('\n')) #split into a list
     prepTime = Field()    # ISO 8601 Duration
     recipeCategory = Field()
     recipeCuisine = Field()

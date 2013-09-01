@@ -2,12 +2,16 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/0.16/topics/item-pipeline.html
+from collections import Set
 from scrapy.exceptions import DropItem
 from scrapy import log
 from scrapy.conf import settings
 import pymongo
 import hashlib
 import datetime
+
+from sqlalchemy.orm import sessionmaker
+from models import Recipes, RecipeIngredients, Publishers, db_connect, create_recipes_table
 
 
 class RejectinvalidPipeline(object):
@@ -124,3 +128,58 @@ class CleanDatesTimesPipeline(object):
         deprecated_msg = "CleanDatesTimesPipeline is deprecated. You may need to update your settings.py to the current pipeline config. See settings.py.default for example"
         log.msg(deprecated_msg, level=log.WARNING, spider=spider)
         return item
+
+
+class DatabasePipeline(object):
+  """Database pipeline for storing scraped items in the database"""
+  def __init__(self):
+    """Initializes database connection and sessionmaker.
+
+    Creates deals table.
+
+    """
+    engine = db_connect()
+    create_recipes_table(engine)
+    self.Session = sessionmaker(bind=engine)
+
+  def process_item(self, item, spider):
+    """Save items in the database.
+
+    This method is called for every item pipeline component.
+
+    """
+    session = self.Session()
+
+    try:
+      publisher = session.query(Publishers).filter_by(name=item['source']).first()
+
+      if not(publisher is None):
+        print 'Found publisher {0} {1}.'.format(publisher, publisher.id)
+
+        recipe = session.query(Recipes).filter_by(name=item['name'],publisher_id=publisher.id).first()
+
+        itemIngredients = item['ingredients']
+
+        if recipe is None:
+          print 'Could not find recipe, creating new entry'
+
+          del item['ingredients']
+          recipe = Recipes(**item)
+          recipe.publisher_id = publisher.id
+          session.add(recipe)
+          session.commit()
+
+          for ing in itemIngredients:
+            ingredient = RecipeIngredients(ingredient=ing)
+            ingredient.recipe_id = recipe.id
+            session.add(ingredient)
+
+          session.commit()
+
+    except:
+      session.rollback()
+      raise
+    finally:
+      session.close()
+
+    return item
