@@ -9,7 +9,6 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine.url import URL
-import sqlalchemy.engine.url as url
 from datetime import datetime
 
 import settings
@@ -24,17 +23,7 @@ def db_connect():
   Returns sqlalchemy engine instance.
 
   """
-  engine_url = url.URL(
-    drivername=settings.DATABASE['drivername'],
-    host=settings.DATABASE['host'],
-    port=settings.DATABASE['port'],
-    username=settings.DATABASE['username'],
-    password=settings.DATABASE['password'],
-    database=settings.DATABASE['database'],
-    query={'charset': 'utf8'}
-  )
-
-  return create_engine(engine_url, encoding='utf-8')
+  return create_engine(URL(**settings.DATABASE), encoding='utf-8')
 
 def create_recipes_table(engine):
   """"""
