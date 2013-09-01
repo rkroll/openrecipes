@@ -165,6 +165,7 @@ class DatabasePipeline(object):
 
           del item['ingredients']
           recipe = Recipes(**item)
+          recipe.valid_recipe = True
           recipe.publisher_id = publisher.id
           session.add(recipe)
           session.commit()
