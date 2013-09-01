@@ -6,6 +6,7 @@ from collections import Set
 from scrapy.exceptions import DropItem
 from scrapy import log
 from scrapy.conf import settings
+from scrapy import log
 import pymongo
 import hashlib
 import datetime
@@ -153,10 +154,14 @@ class DatabasePipeline(object):
     try:
       publisher = session.query(Publishers).filter_by(name=item['source']).first()
 
+      self.log('Found publisher with name %s' % publisher.name, level=log.DEBUG)
+
       if not(publisher is None):
         print 'Found publisher {0} {1}.'.format(publisher, publisher.id)
 
         recipe = session.query(Recipes).filter_by(name=item['name'],publisher_id=publisher.id).first()
+
+        self.log('Found recipe %s' % recipe, level=log.DEBUG)
 
         itemIngredients = item['ingredients']
 
