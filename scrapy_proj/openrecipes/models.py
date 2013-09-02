@@ -44,7 +44,7 @@ class Publishers(DeclarativeBase):
 class RecipeIngredients(DeclarativeBase):
   __tablename__ = "ingredients"
   id = Column(Integer, primary_key=True)
-  ingredient = Column('ingredient', String(length=255), nullable=True)
+  ingredient = Column('name', String(length=255), nullable=True)
   recipe_id = Column(Integer, ForeignKey('recipes.id'))
   created_at = Column(DateTime, nullable=False, default=_get_date())
   updated_at = Column(DateTime, nullable=False, default=_get_date(), onupdate=_get_date())
