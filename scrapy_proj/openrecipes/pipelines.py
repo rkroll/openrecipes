@@ -177,6 +177,10 @@ class DatabasePipeline(object):
             session.add(ingredient)
 
           session.commit()
+        else:
+          print "Skipping recipe, already exists."
+      else:
+        print "Could not find publisher, skipping"
 
     except:
       session.rollback()
