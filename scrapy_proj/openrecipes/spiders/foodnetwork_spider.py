@@ -41,6 +41,7 @@ class FoodnetworkcrawlSpider(CrawlSpider, FoodnetworkMixin):
     rules = (
         Rule(SgmlLinkExtractor(allow=('/search/delegate.do?Ntk=site_search&Nr=Record%20Type:Result&N=501&No=\d+'))),
 
-        Rule(SgmlLinkExtractor(allow=('/recipes/.+')),
-             callback='parse_item'),
+        Rule(SgmlLinkExtractor(allow=('/search/.+'))),
+
+        Rule(SgmlLinkExtractor(allow=('/recipes/.+')), callback='parse_item'),
     )
