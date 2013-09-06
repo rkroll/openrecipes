@@ -131,6 +131,53 @@ class CleanDatesTimesPipeline(object):
         return item
 
 
+def createRecipe(self, session, publisher, item):
+  print 'Could not find recipe, creating new entry'
+
+  itemIngredients = item['ingredients']
+
+  del item['ingredients']
+  recipe = Recipes(**item)
+  recipe.valid_recipe = True
+  recipe.publisher_id = publisher.id
+  session.add(recipe)
+  session.commit()
+
+
+  for ing in itemIngredients:
+    ingredient = RecipeIngredients(ingredient=ing)
+    ingredient.recipe_id = recipe.id
+    session.add(ingredient)
+
+  session.commit()
+
+
+def updateRecipe(self, session, recipe, item):
+  itemIngredients = item['ingredients']
+
+  matches = 0
+
+  for ingredient in recipe.ingredients:
+    for itemIng in itemIngredients:
+      if itemIng == ingredient.ingredient:
+        matches += 1
+
+  # if different counts or if not all items match, regen the ingredients
+  if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
+    print 'Ingredient count mismatch, recreating ingredients'
+    for ingredient in recipe.ingredients:
+      session.delete(ingredient)
+    session.commit()
+
+    for ing in itemIngredients:
+      print 'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing)
+      ingredient = RecipeIngredients(ingredient=ing)
+      ingredient.recipe_id = recipe.id
+      session.add(ingredient)
+
+    session.commit()
+
+
 class DatabasePipeline(object):
   """Database pipeline for storing scraped items in the database"""
   def __init__(self):
@@ -155,32 +202,16 @@ class DatabasePipeline(object):
       publisher = session.query(Publishers).filter_by(name=item['source']).first()
 
       if not(publisher is None):
-        print 'Found publisher {0} {1}.'.format(publisher, publisher.id)
+        print 'Found publisher "{0}" {1}.'.format(item['source'], publisher.id)
 
         recipe = session.query(Recipes).filter_by(name=item['name'],publisher_id=publisher.id).first()
 
-        itemIngredients = item['ingredients']
-
         if recipe is None:
-          print 'Could not find recipe, creating new entry'
-
-          del item['ingredients']
-          recipe = Recipes(**item)
-          recipe.valid_recipe = True
-          recipe.publisher_id = publisher.id
-          session.add(recipe)
-          session.commit()
-
-          for ing in itemIngredients:
-            ingredient = RecipeIngredients(ingredient=ing)
-            ingredient.recipe_id = recipe.id
-            session.add(ingredient)
-
-          session.commit()
+          createRecipe(self, session, publisher, item)
         else:
-          print "Skipping recipe, already exists."
+          updateRecipe(self, session, recipe, item)
       else:
-        print "Could not find publisher, skipping"
+        print "Could not find publisher '{0}', skipping".format(item['source'])
 
     except:
       session.rollback()

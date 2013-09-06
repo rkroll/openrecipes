@@ -73,7 +73,7 @@ class Recipes(DeclarativeBase):
   # Recipe
   cookingMethod = Column('cooking_method', String(length=255), nullable=True)
   cookTime = Column('cook_time', String(length=255), nullable=True)  # ISO 8601 Duration
-  ingredients = relationship("RecipeIngredients", uselist=False)
+  ingredients = relationship("RecipeIngredients", uselist=True)
   prepTime = Column('prep_time', String(length=255), nullable=True)    # ISO 8601 Duration
   recipeCategory = Column('recipe_category', String(length=255), nullable=True)
   recipeCuisine = Column('recipe_cuisine', String(length=255), nullable=True)
