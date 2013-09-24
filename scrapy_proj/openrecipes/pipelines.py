@@ -165,17 +165,17 @@ def updateRecipe(self, session, recipe, item):
   # if different counts or if not all items match, regen the ingredients
   if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
     print 'Ingredient count mismatch, recreating ingredients'
-    # for ingredient in recipe.ingredients:
-    #   session.delete(ingredient)
-    # session.commit()
-    #
-    # for ing in itemIngredients:
-    #   print 'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing)
-    #   ingredient = RecipeIngredients(ingredient=ing)
-    #   ingredient.recipe_id = recipe.id
-    #   session.add(ingredient)
-    #
-    # session.commit()
+    for ingredient in recipe.ingredients:
+      session.delete(ingredient)
+    session.commit()
+
+    for ing in itemIngredients:
+      print u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing)
+      ingredient = RecipeIngredients(ingredient=ing)
+      ingredient.recipe_id = recipe.id
+      session.add(ingredient)
+
+    session.commit()
 
 
 class DatabasePipeline(object):
