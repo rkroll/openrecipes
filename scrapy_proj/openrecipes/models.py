@@ -23,7 +23,7 @@ def db_connect():
   Returns sqlalchemy engine instance.
 
   """
-  return create_engine(URL(**settings.DATABASE), encoding='utf-8')
+  create_engine(URL(**settings.DATABASE), encoding='utf-8')
 
 def create_recipes_table(engine):
   """"""
