@@ -209,7 +209,7 @@ class DatabasePipeline(object):
         if recipe is None:
           createRecipe(self, session, publisher, item)
         else:
-          updateRecipe(self, session, recipe, item)
+          #updateRecipe(self, session, recipe, item)
       else:
         print "Could not find publisher '{0}', skipping".format(item['source'])
 
