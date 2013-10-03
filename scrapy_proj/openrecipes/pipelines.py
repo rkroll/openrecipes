@@ -174,6 +174,7 @@ def updateRecipe(self, session, recipe, item):
       ingredient = RecipeIngredients(ingredient=ing)
       ingredient.recipe_id = recipe.id
       session.add(ingredient)
+      session.commit()
 
     session.commit()
 
