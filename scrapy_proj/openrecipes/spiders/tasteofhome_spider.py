@@ -82,6 +82,12 @@ class TasteofhomecrawlSpider(CrawlSpider, TasteofhomeMixin):
     ]
 
   rules = (
-    Rule(SgmlLinkExtractor(allow=('/recipes/.+')),
-         callback='parse_item'),
+    # crawl all the cuisine pages, but dont try to parse
+    Rule(SgmlLinkExtractor(allow=('/recipes/cuisine/.+'))),
+    Rule(SgmlLinkExtractor(allow=('/recipes/ingredients/.+'))),
+    Rule(SgmlLinkExtractor(allow=('/recipes/course/.+'))),
+    Rule(SgmlLinkExtractor(allow=('/recipes/cooking-style/.+'))),
+    Rule(SgmlLinkExtractor(allow=('/recipes/partner-recipes/.+'))),
+    Rule(SgmlLinkExtractor(allow=('/recipes/.+')), callback='parse_item'),
+    #Rule(SgmlLinkExtractor(allow=('\/recipes\/[a-zA-Z-/]+')), callback='parse_item'),
   )
