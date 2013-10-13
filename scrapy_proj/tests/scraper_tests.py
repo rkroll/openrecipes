@@ -103,9 +103,10 @@ def generate_tests():
             # create a test method for each item
             for k, item in enumerate(items):
                 print "Examining %s item %d" % (spider_name, k)
-                test_method = create_item_t(item[0])
-                test_method.__name__ = 'test_expected_%s_%d' % (spider_name, k)
-                setattr(CheckScrape, test_method.__name__, test_method)
+                if(len(item) > 0):
+                  test_method = create_item_t(item[0])
+                  test_method.__name__ = 'test_expected_%s_%d' % (spider_name, k)
+                  setattr(CheckScrape, test_method.__name__, test_method)
 
 
 generate_tests()
