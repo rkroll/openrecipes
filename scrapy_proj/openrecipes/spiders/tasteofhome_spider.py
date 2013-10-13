@@ -82,6 +82,6 @@ class TasteofhomecrawlSpider(CrawlSpider, TasteofhomeMixin):
     ]
 
   rules = (
-    Rule(SgmlLinkExtractor(allow=('/recipe/.+')),
+    Rule(SgmlLinkExtractor(allow=('/recipes/.+')),
          callback='parse_item'),
   )
