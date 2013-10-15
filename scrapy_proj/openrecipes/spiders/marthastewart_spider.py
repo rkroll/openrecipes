@@ -24,9 +24,13 @@ class MarthastewartcrawlSpider(CrawlSpider, MarthastewartMixin):
 
     start_urls = [
         "http://www.marthastewart.com/cook",
+        "http://www.marthastewart.com/276948/dinner-tonight",
+        "http://www.marthastewart.com/276954/great-cake-recipes",
+        "http://www.marthastewart.com/276961/dinner-party-ideas",
+        "http://www.marthastewart.com/1005841/martha%E2%80%99s-favorite-recipes-summer",
+        "http://www.marthastewart.com/967078/recipe-collections",
     ]
 
     rules = (
-      Rule(SgmlLinkExtractor(allow=('/cook/.+'))),
       Rule(SgmlLinkExtractor(allow=('/.+')), callback='parse_item'),
     )
