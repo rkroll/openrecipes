@@ -82,6 +82,11 @@ def create_item_t(item):
         msg = "URL is not in item %s" % (item)
         self.assertIn('url', item, msg)
         self.assertNotEqual(item['url'], '', msg)
+
+        if 'image' in item:
+          msg = "Image URL not valid"
+          self.assertFalse(item['image'].startswith('//'), msg)
+
     return do_test_scraped_item
 
 

@@ -21,6 +21,8 @@ def _parse(root, schema, data={}):
             if node.extract() == rootStr:
                 break
             if node.select('@itemscope'):
+                # need to recurse into itemscopes
+                #_parse(prop, node.select('@itemtype').extract()[0])
                 skip = True
                 break
 
@@ -45,8 +47,9 @@ def _parse(root, schema, data={}):
 def parse_recipes(scope, data={}):
     schema = 'http://schema.org/Recipe'
     recipes = [_parse(recipe, schema, data) for recipe in scope.select('//*[@itemtype="%s"]' % schema)]
-    # for recipe in recipes:
-    #     if 'recipeInstructions' in recipe:
-    #         del recipe['recipeInstructions']
+
+    for recipe in recipes:
+      if 'photo' in recipe and 'image' not in recipe:
+        recipe['image'] = recipe['photo']
 
     return recipes

@@ -64,9 +64,16 @@ class TasteofhomeMixin(object):
     raw_recipes = self.parse_recipes(hxs, {'source': self.source, 'url': response.url})
     for recipe in raw_recipes:
       if 'photo' in recipe:
-        recipe['photo'] = flatten(recipe['photo'])
+        photo_url = flatten(recipe['photo'])
+        if photo_url.startswith('//'):
+          photo_url = 'http:' + photo_url
+        recipe['photo'] = photo_url
+
       if 'image' in recipe:
-        recipe['image'] = flatten(recipe['image'])
+        photo_url = flatten(recipe['image'])
+        if photo_url.startswith('//'):
+          photo_url = 'http:' + photo_url
+        recipe['image'] = photo_url
 
     return [RecipeItem.from_dict(recipe) for recipe in raw_recipes]
 
