@@ -18,7 +18,7 @@ class MarthastewartMixin(object):
 
 class MarthastewartcrawlSpider(CrawlSpider, MarthastewartMixin):
 
-    name = "www.marthastewart.com"
+    name = "marthastewart.com"
 
     allowed_domains = ["www.marthastewart.com"]
 
@@ -27,5 +27,6 @@ class MarthastewartcrawlSpider(CrawlSpider, MarthastewartMixin):
     ]
 
     rules = (
-      Rule(SgmlLinkExtractor(allow=('/cook/.+')), callback='parse_item'),
+      Rule(SgmlLinkExtractor(allow=('/cook/.+'))),
+      Rule(SgmlLinkExtractor(allow=('/.+')), callback='parse_item'),
     )
