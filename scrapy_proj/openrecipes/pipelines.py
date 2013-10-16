@@ -131,8 +131,6 @@ class CleanDatesTimesPipeline(object):
 
 
 def createRecipe(self, session, publisher, item):
-  print 'Could not find recipe, creating new entry'
-
   itemIngredients = item['ingredients']
 
   del item['ingredients']
@@ -163,7 +161,7 @@ def updateRecipe(self, session, recipe, item):
 
   # if different counts or if not all items match, regen the ingredients
   if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
-    print 'Ingredient count mismatch, recreating ingredients'
+    log.msg('Ingredient count mismatch, recreating ingredients')
     for ingredient in recipe.ingredients:
       session.delete(ingredient)
     session.commit()
@@ -174,6 +172,9 @@ def updateRecipe(self, session, recipe, item):
       ingredient.recipe_id = recipe.id
       session.add(ingredient)
       session.commit()
+
+    if recipe.description != item['description']:
+      recipe.description = item['description']
 
     session.commit()
 
@@ -202,8 +203,6 @@ class DatabasePipeline(object):
       publisher = session.query(Publishers).filter_by(name=item['source']).first()
 
       if not(publisher is None):
-        print 'Found publisher "{0}" {1}.'.format(item['source'], publisher.id)
-
         recipe = session.query(Recipes).filter_by(name=item['name'],publisher_id=publisher.id).first()
 
         if recipe is None:
@@ -211,7 +210,7 @@ class DatabasePipeline(object):
         else:
           updateRecipe(self, session, recipe, item)
       else:
-        print "Could not find publisher '{0}', skipping".format(item['source'])
+        log.msg("Could not find publisher '{0}', skipping".format(item['source']))
 
     except:
       session.rollback()
