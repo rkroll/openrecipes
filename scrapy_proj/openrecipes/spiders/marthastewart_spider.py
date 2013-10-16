@@ -1,4 +1,5 @@
 from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.contrib.spiders import SitemapSpider
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from openrecipes.items import RecipeItem
@@ -16,21 +17,27 @@ class MarthastewartMixin(object):
       return [RecipeItem.from_dict(recipe) for recipe in raw_recipes]
 
 
-class MarthastewartcrawlSpider(CrawlSpider, MarthastewartMixin):
+class MarthastewartcrawlSpider(SitemapSpider, MarthastewartMixin):
 
     name = "marthastewart.com"
 
     allowed_domains = ["www.marthastewart.com"]
 
-    start_urls = [
-        "http://www.marthastewart.com/cook",
-        "http://www.marthastewart.com/276948/dinner-tonight",
-        "http://www.marthastewart.com/276954/great-cake-recipes",
-        "http://www.marthastewart.com/276961/dinner-party-ideas",
-        "http://www.marthastewart.com/1005841/martha%E2%80%99s-favorite-recipes-summer",
-        "http://www.marthastewart.com/967078/recipe-collections",
+    sitemap_urls = ['http://www.marthastewart.com/sitemap.xml']
+
+    sitemap_rules = [
+      ('/.+', 'parse_item'),
     ]
 
-    rules = (
-      Rule(SgmlLinkExtractor(allow=('/.+')), callback='parse_item'),
-    )
+    # start_urls = [
+    #     "http://www.marthastewart.com/cook",
+    #     "http://www.marthastewart.com/276948/dinner-tonight",
+    #     "http://www.marthastewart.com/276954/great-cake-recipes",
+    #     "http://www.marthastewart.com/276961/dinner-party-ideas",
+    #     "http://www.marthastewart.com/1005841/martha%E2%80%99s-favorite-recipes-summer",
+    #     "http://www.marthastewart.com/967078/recipe-collections",
+    # ]
+    #
+    # rules = (
+    #   Rule(SgmlLinkExtractor(allow=('/.+')), callback='parse_item'),
+    # )
