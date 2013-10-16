@@ -2,7 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from openrecipes.items import RecipeItem, RecipeItemLoader
-
+import re
 
 class TastyKitchenMixin(object):
 
@@ -62,9 +62,23 @@ class TastyKitchenMixin(object):
             # Simpler to grab the amount and name spans separately,
             # then combine them into a string.
             ingredient_scopes = r_scope.select(ingredients_path)
-            amount = ingredient_scopes.select(ingredients_amounts_path).extract()
-            name = ingredient_scopes.select(ingredients_names_path).extract()
-            ingredients = [" ".join(ing).encode('utf-8') for ing in zip(amount, name)]
+
+            ingredients = []
+
+            for ing_scope in ingredient_scopes:
+              ingredient = []
+              amount = ing_scope.select(ingredients_amounts_path).extract()
+              name = ing_scope.select(ingredients_names_path).extract()
+
+              ingredient = amount + name
+              ingredient_line = " ".join(ingredient).encode('utf-8')
+              ingredient_line = re.sub(' +',' ', ingredient_line)
+
+              ingredients.append(ingredient_line)
+
+            # amount = ingredient_scopes.select(ingredients_amounts_path).extract()
+            # name = ingredient_scopes.select(ingredients_names_path).extract()
+            # ingredients = [" ".join(ing).encode('utf-8') for ing in zip(amount, name)]
 
             il.add_value('ingredients', ingredients)
 
@@ -88,7 +102,8 @@ class TastyKitchenSpider(CrawlSpider, TastyKitchenMixin):
 
     # the set of URLs the crawler will start from
     start_urls = [
-        "http://tastykitchen.com/recipes/page/1/"
+        "http://tastykitchen.com/recipes/holidays/christmas-morning-eggnog-muffins/"
+        #"http://tastykitchen.com/recipes/page/1/"
     ]
 
     # a tuple of Rules that are used to extract links from the HTML page
