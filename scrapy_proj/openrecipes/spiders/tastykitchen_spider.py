@@ -102,8 +102,7 @@ class TastyKitchenSpider(CrawlSpider, TastyKitchenMixin):
 
     # the set of URLs the crawler will start from
     start_urls = [
-        "http://tastykitchen.com/recipes/holidays/christmas-morning-eggnog-muffins/"
-        #"http://tastykitchen.com/recipes/page/1/"
+        "http://tastykitchen.com/recipes/page/1/"
     ]
 
     # a tuple of Rules that are used to extract links from the HTML page
