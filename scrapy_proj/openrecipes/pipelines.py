@@ -167,14 +167,16 @@ def updateRecipe(self, session, recipe, item):
     session.commit()
 
     for ing in itemIngredients:
+      ing = ing.decode('utf-8', 'ignore')
       print u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing)
       ingredient = RecipeIngredients(ingredient=ing)
       ingredient.recipe_id = recipe.id
       session.add(ingredient)
       session.commit()
 
-    if recipe.description != item['description']:
-      recipe.description = item['description']
+    desc = item['description'].decode('utf-8', 'ignore')
+    if recipe.description != desc:
+      recipe.description = desc
 
     session.commit()
 
