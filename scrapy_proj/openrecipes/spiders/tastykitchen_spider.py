@@ -15,7 +15,6 @@ class TastyKitchenMixin(object):
     source = 'tastykitchen'
 
     def parse_item(self, response):
-
         # we use this to run XPath commands against the HTML in the response
         hxs = HtmlXPathSelector(response)
 
@@ -65,7 +64,25 @@ class TastyKitchenMixin(object):
 
             amount = ingredient_scopes.select(ingredients_amounts_path).extract()
             name = ingredient_scopes.select(ingredients_names_path).extract()
-            ingredients = [" ".join(to_uni(ing)) for ing in zip(amount, name)]
+
+
+            # ingredients = []
+            #
+            # for ing_scope in ingredient_scopes:
+            #   amount_selected = ing_scope.select(ingredients_amounts_path)
+            #   amount = amount_selected.extract()
+            #   name = ing_scope.select(ingredients_names_path).extract()
+            #
+            #   ingredient = amount + name
+            #
+            #   print type(amount)
+            #   print amount
+            #
+            #   ingredient_line = u" ".join(ingredient)
+            #
+            # ingredients.append(ingredient_line)
+
+            ingredients = [" ".join(ing) for ing in zip(amount, name)]
 
             il.add_value('ingredients', ingredients)
 
@@ -89,6 +106,7 @@ class TastyKitchenSpider(CrawlSpider, TastyKitchenMixin):
 
     # the set of URLs the crawler will start from
     start_urls = [
+        #"http://tastykitchen.com/recipes/desserts/toasted-coconut-banana-sundae/"
         "http://tastykitchen.com/recipes/page/1/"
     ]
 
