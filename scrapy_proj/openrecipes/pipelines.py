@@ -13,7 +13,7 @@ import datetime
 
 from sqlalchemy.orm import sessionmaker
 from models import Recipes, RecipeIngredients, Publishers, db_connect, create_recipes_table
-
+from openrecipes.util import to_uni
 
 class RejectinvalidPipeline(object):
     def process_item(self, item, spider):
@@ -30,7 +30,6 @@ class RejectinvalidPipeline(object):
             raise DropItem("Missing 'ingredients' in %s" % item)
 
         return item
-
 
 class DuplicaterecipePipeline(object):
     """
@@ -167,12 +166,21 @@ def updateRecipe(self, session, recipe, item):
     session.commit()
 
     for ing in itemIngredients:
-      ing = ing.decode('utf-8', 'ignore')
-      print u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing)
+      log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
       ingredient = RecipeIngredients(ingredient=ing)
       ingredient.recipe_id = recipe.id
       session.add(ingredient)
       session.commit()
+
+      # try:
+      #   #ing = ing.decode('utf-8', 'ignore')
+      #   log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
+      #   ingredient = RecipeIngredients(ingredient=ing)
+      #   ingredient.recipe_id = recipe.id
+      #   session.add(ingredient)
+      #   session.commit()
+      # except Exception:
+      #   log.msg(u'Error adding ingredient to recipe {0}: {1}'.format(recipe.id, ing), level=log.ERROR)
 
     desc = item['description'].decode('utf-8', 'ignore')
     if recipe.description != desc:
