@@ -30,15 +30,15 @@ class FoodnetworkcrawlSpider(CrawlSpider, FoodnetworkMixin):
 
     name = "food.com"
 
-    allowed_domains = ["www.food.com"]
+    allowed_domains = ["food.com"]
 
     start_urls = [
+        'http://www.food.com/recipes',
         'http://www.food.com/recipe-finder/all?pn=1',
     ]
 
     rules = (
         Rule(SgmlLinkExtractor(allow=('/recipe-finder/all?pn=\d+'))),
-
-        Rule(SgmlLinkExtractor(allow=('/recipe/.+')),
-             callback='parse_item'),
+        Rule(SgmlLinkExtractor(allow=('/recipes/.+'))),
+        Rule(SgmlLinkExtractor(allow=('/recipe/.+')), callback='parse_item'),
     )

@@ -3,6 +3,7 @@ import timelib
 from scrapy import log
 import bleach
 import re
+import unicodedata
 
 
 def parse_iso_date(scope):
@@ -10,6 +11,53 @@ def parse_iso_date(scope):
         return scope.select('@content | @datetime').extract()[0]
     except:
         return ''
+
+def to_uni(lst):
+  """This function takes a list of strings scraped from a webpage which may
+  be in a variety of encodings (see the list), and returns a list of the
+  strings as unicode."""
+  """Copyright (C) 2012 Harman-Clarke
+
+  This function is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  This function is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+  Public License for more details.
+  You should have received a copy of the GNU General Public License along
+  with this program.  If not, see http://www.gnu.org/licenses/."""
+
+  #list of the encodings you think you might encounter
+  encodings = ['iso-8859-1','windows-1252','utf-8']
+  #try to decode the list using the encodings
+  uni_lst = []
+  done = 0
+  for x in encodings:
+    for s in lst:
+      if type(s)==unicode:
+        uni_lst.append(s)
+        done +=1
+      else:
+        try:
+          uni_lst.append(s.decode(x,'strict'))
+          done += 1
+          print "Decoded %s with encoding %s"% (s,x)
+        except UnicodeError:
+          uni_lst = []
+          done = 0
+          print "Couldn't decode %s with encoding %s"%(s,x)
+          break
+    if done == len(lst):
+      break
+  if not done == len(lst):
+    print "Could not convert to unicode, proceeding with caution"
+    #normalise the standard unicode
+  norm = [ unicodedata.normalize('NFKD',s) for s in uni_lst ]
+  #get rid of any blank entries in the list
+  noblanks = [s for s in norm if re.search('\S',s)]
+  return noblanks
 
 
 def flatten(list_or_string):

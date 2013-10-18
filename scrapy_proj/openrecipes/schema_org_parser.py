@@ -1,3 +1,11 @@
+import re
+
+def clean(param):
+  data = re.sub( '\t+', ' ', param).strip()
+  data = re.sub( '\s+', ' ', data).strip()
+  return data
+
+
 def _parse(root, schema, data={}):
     rootStr = root.extract()
     attrMap = {
@@ -10,6 +18,7 @@ def _parse(root, schema, data={}):
         'datePublished': '@content',
     }
     data['itemtype'] = schema
+    data['url'] = root.select('//meta[@property="og:url"]/@content').extract()
     props = root.select('.//*[@itemprop]')
     for prop in props:
         node = prop
@@ -34,7 +43,7 @@ def _parse(root, schema, data={}):
         if prop.select('@itemscope'):
             value = _parse(prop, prop.select('@itemtype').extract()[0])
         else:
-            value = [''.join(prop.select(attrMap.get(name, ".//text()[normalize-space()]")).extract()).strip()]
+            value = [clean(' '.join(prop.select(attrMap.get(name, ".//text()[normalize-space()]")).extract()))]
 
         if prevValue is None:
             data[name] = value

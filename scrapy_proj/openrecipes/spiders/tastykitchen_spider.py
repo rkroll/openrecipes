@@ -2,7 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from openrecipes.items import RecipeItem, RecipeItemLoader
-import re
+from openrecipes.util import to_uni
 
 class TastyKitchenMixin(object):
 
@@ -53,7 +53,7 @@ class TastyKitchenMixin(object):
             il.add_value('name', r_scope.select(name_path).extract())
             il.add_value('image', r_scope.select(image_path).extract())
             il.add_value('description', r_scope.select(description_path).extract())
-            il.add_value('url', response.url)
+            il.add_value('url', response.url.encode("utf-8", "replace"))
             il.add_value('prepTime', r_scope.select(prepTime_path).extract())
             il.add_value('cookTime', r_scope.select(cookTime_path).extract())
             il.add_value('recipeYield', r_scope.select(recipeYield_path).extract())
@@ -63,22 +63,9 @@ class TastyKitchenMixin(object):
             # then combine them into a string.
             ingredient_scopes = r_scope.select(ingredients_path)
 
-            ingredients = []
-
-            for ing_scope in ingredient_scopes:
-              ingredient = []
-              amount = ing_scope.select(ingredients_amounts_path).extract()
-              name = ing_scope.select(ingredients_names_path).extract()
-
-              ingredient = amount + name
-              ingredient_line = " ".join(ingredient).encode('utf-8')
-              ingredient_line = re.sub(' +',' ', ingredient_line)
-
-              ingredients.append(ingredient_line)
-
-            # amount = ingredient_scopes.select(ingredients_amounts_path).extract()
-            # name = ingredient_scopes.select(ingredients_names_path).extract()
-            # ingredients = [" ".join(ing).encode('utf-8') for ing in zip(amount, name)]
+            amount = ingredient_scopes.select(ingredients_amounts_path).extract()
+            name = ingredient_scopes.select(ingredients_names_path).extract()
+            ingredients = [" ".join(to_uni(ing)) for ing in zip(amount, name)]
 
             il.add_value('ingredients', ingredients)
 
