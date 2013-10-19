@@ -159,18 +159,18 @@ def updateRecipe(self, session, recipe, item):
         matches += 1
 
   # if different counts or if not all items match, regen the ingredients
-  if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
-    log.msg('Ingredient count mismatch, recreating ingredients')
-    for ingredient in recipe.ingredients:
-      session.delete(ingredient)
-    session.commit()
+  #if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
+  #log.msg('Ingredient count mismatch, recreating ingredients')
+  for ingredient in recipe.ingredients:
+    session.delete(ingredient)
+  session.commit()
 
-    for ing in itemIngredients:
-      log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
-      ingredient = RecipeIngredients(ingredient=ing)
-      ingredient.recipe_id = recipe.id
-      session.add(ingredient)
-      session.commit()
+  for ing in itemIngredients:
+    log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
+    ingredient = RecipeIngredients(ingredient=ing)
+    ingredient.recipe_id = recipe.id
+    session.add(ingredient)
+    session.commit()
 
       # try:
       #   #ing = ing.decode('utf-8', 'ignore')
@@ -182,7 +182,7 @@ def updateRecipe(self, session, recipe, item):
       # except Exception:
       #   log.msg(u'Error adding ingredient to recipe {0}: {1}'.format(recipe.id, ing), level=log.ERROR)
 
-    desc = item['description'].decode('utf-8', 'ignore')
+    desc = item['description']
     if recipe.description != desc:
       recipe.description = desc
 
