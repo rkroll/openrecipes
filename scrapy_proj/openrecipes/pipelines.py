@@ -12,8 +12,7 @@ import hashlib
 import datetime
 
 from sqlalchemy.orm import sessionmaker
-from models import Recipes, RecipeIngredients, Publishers, db_connect, create_recipes_table
-from openrecipes.util import to_uni
+from models import Recipes, RecipeIngredients, Publishers, db_connect, create_recipes_table, Category
 
 class RejectinvalidPipeline(object):
     def process_item(self, item, spider):
@@ -28,6 +27,11 @@ class RejectinvalidPipeline(object):
 
         if not item.get('ingredients', False):
             raise DropItem("Missing 'ingredients' in %s" % item)
+
+        ingredients = item.get('ingredients')
+
+        if len(ingredients) == 0:
+          raise DropItem("No ingredients found in %s" % item)
 
         return item
 
@@ -131,62 +135,52 @@ class CleanDatesTimesPipeline(object):
 
 def createRecipe(self, session, publisher, item):
   itemIngredients = item['ingredients']
+  categories = item['recipeCategory']
 
   del item['ingredients']
+  del item['recipeCategory']
+
   recipe = Recipes(**item)
   recipe.valid_recipe = True
   recipe.publisher_id = publisher.id
-  session.add(recipe)
-  session.commit()
 
+  cats = []
+
+  for cat in categories:
+    category = session.query(Category).filter_by(name=cat).first()
+
+    if category is None:
+      category = Category(name=cat)
+      session.add(category)
+      session.commit()
+
+    cats.append(category)
+
+  recipe.categories = cats
+  session.add(recipe)
 
   for ing in itemIngredients:
     ingredient = RecipeIngredients(ingredient=ing)
-    ingredient.recipe_id = recipe.id
-    session.add(ingredient)
+    recipe.ingredients.append(ingredient)
 
-  session.commit()
+  session.add(recipe)
+  #session.commit()
 
 
 def updateRecipe(self, session, recipe, item):
   itemIngredients = item['ingredients']
 
-  matches = 0
-
-  for ingredient in recipe.ingredients:
-    for itemIng in itemIngredients:
-      if itemIng == ingredient.ingredient:
-        matches += 1
-
-  # if different counts or if not all items match, regen the ingredients
-  #if len(itemIngredients) != len(recipe.ingredients) or matches != len(recipe.ingredients):
-  #log.msg('Ingredient count mismatch, recreating ingredients')
-  for ingredient in recipe.ingredients:
-    session.delete(ingredient)
+  # Regenerate the ingredients for the recipe
+  recipe.ingredients = []
   session.commit()
+
+  recipe.fromdict(item)
 
   for ing in itemIngredients:
     log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
     ingredient = RecipeIngredients(ingredient=ing)
     ingredient.recipe_id = recipe.id
     session.add(ingredient)
-    session.commit()
-
-      # try:
-      #   #ing = ing.decode('utf-8', 'ignore')
-      #   log.msg(u'Adding ingredient to recipe {0}: {1}'.format(recipe.id, ing))
-      #   ingredient = RecipeIngredients(ingredient=ing)
-      #   ingredient.recipe_id = recipe.id
-      #   session.add(ingredient)
-      #   session.commit()
-      # except Exception:
-      #   log.msg(u'Error adding ingredient to recipe {0}: {1}'.format(recipe.id, ing), level=log.ERROR)
-
-    desc = item['description']
-    if recipe.description != desc:
-      recipe.description = desc
-
-    session.commit()
 
 
 class DatabasePipeline(object):
@@ -213,12 +207,20 @@ class DatabasePipeline(object):
       publisher = session.query(Publishers).filter_by(name=item['source']).first()
 
       if not(publisher is None):
-        recipe = session.query(Recipes).filter_by(name=item['name'],publisher_id=publisher.id).first()
+        try:
+          recipe = session.query(Recipes).filter_by(name=item['name'], url=item['url'], publisher_id=publisher.id).first()
 
-        if recipe is None:
-          createRecipe(self, session, publisher, item)
-        else:
-          updateRecipe(self, session, recipe, item)
+          if recipe is None:
+            createRecipe(self, session, publisher, item)
+          else:
+            updateRecipe(self, session, recipe, item)
+
+          session.commit()
+        except:
+          session.rollback()
+          raise
+        finally:
+          session.close()
       else:
         log.msg("Could not find publisher '{0}', skipping".format(item['source']))
 

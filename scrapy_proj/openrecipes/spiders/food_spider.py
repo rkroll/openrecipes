@@ -1,12 +1,10 @@
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-from scrapy.selector import HtmlXPathSelector
 from openrecipes.items import RecipeItem, RecipeItemLoader
-from openrecipes.schema_org_parser import parse_recipes
-from openrecipes.util import flatten
+from openrecipes.microdata_parser import parse_recipes
+import microdata
 
-
-class FoodnetworkMixin(object):
+class FoodMixin(object):
     source = 'food'
 
     def parse_item(self, response):
@@ -15,18 +13,11 @@ class FoodnetworkMixin(object):
         if response.url.endswith('/review'):
             return []
 
-        hxs = HtmlXPathSelector(response)
-        raw_recipes = parse_recipes(hxs, {'source': self.source})
-        for recipe in raw_recipes:
-            if 'photo' in recipe:
-                recipe['photo'] = flatten(recipe['photo'])
-            if 'image' in recipe:
-                recipe['image'] = flatten(recipe['image'])
+        raw_recipes = parse_recipes(response, {u'source': self.source, 'url': response.url})
 
         return [RecipeItem.from_dict(recipe) for recipe in raw_recipes]
 
-
-class FoodnetworkcrawlSpider(CrawlSpider, FoodnetworkMixin):
+class FoodSpider(CrawlSpider, FoodMixin):
 
     name = "food.com"
 

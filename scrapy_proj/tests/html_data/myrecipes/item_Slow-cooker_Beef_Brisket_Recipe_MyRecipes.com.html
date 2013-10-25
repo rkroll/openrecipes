@@ -1,0 +1,1010 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" lang="en" xml:lang="en" xml:lang="en">
+  <head>
+    <script type="text/javascript">&#13;
+(function (site_root, location, document, forceCookieUrl) {&#13;
+/* lsg-mobile-detect.js Version 2.0 */&#13;
+    var version = 2.0,&#13;
+    	pref_exists = /TI_PREFS=/,&#13;
+        pref_mob = /TI_PREFS=phone/,&#13;
+        pref_def = /TI_PREFS=default/,&#13;
+        no_mob   = /nomobile=1/,&#13;
+        omniture_cookie = 'orig_ref',&#13;
+        mob_path = '/m',&#13;
+        cookie = document.cookie,&#13;
+        redirect = function() {&#13;
+        /* Build mobile version of the url */&#13;
+            var mob_url  = location.href.replace(site_root, function(match, idx, url){&#13;
+                // Check if redirect to site_root, and if so, append a trailing&#13;
+                // slash to avoid a server-side redirect (301) on bare url.&#13;
+                  var is_root = match.length + idx === url.length;&#13;
+                  return match + mob_path + (is_root ? '/' : '');&#13;
+                });&#13;
+&#13;
+        /* Set Omniture cookie to capture referrer */&#13;
+            document.cookie = omniture_cookie + '=' + document.referrer + '; path=/';&#13;
+&#13;
+        /* Execute redirect */&#13;
+            location.href = mob_url;&#13;
+        };&#13;
+&#13;
+	/* Force the device atlas cookie if we're on a reverse-proxy URL. */&#13;
+	if (forceCookieUrl.length &gt; 0 &amp;&amp; !pref_exists.test(cookie)) {&#13;
+		if (no_mob.test(location.search)) {&#13;
+	        document.cookie = pref_def.source + '; path=/; domain=' + location.hostname.match(/^.*\.(.*\.com)$/)[1];&#13;
+	        return;&#13;
+		}&#13;
+		var mrForcedRequest = null;&#13;
+	    if (window.XMLHttpRequest){&#13;
+	        mrForcedRequest = new XMLHttpRequest();&#13;
+	    } else if (window.ActiveXObject) { // IE&#13;
+	        try {&#13;
+	          mrForcedRequest = new ActiveXObject("Msxml2.XMLHTTP");&#13;
+	        }&#13;
+	        catch (e) {&#13;
+	          try {&#13;
+	            mrForcedRequest = new ActiveXObject("Microsoft.XMLHTTP");&#13;
+	          }&#13;
+	          catch (e) {}&#13;
+	        }&#13;
+	    }&#13;
+	    if (mrForcedRequest == null) {&#13;
+	    	return;&#13;
+	    }&#13;
+	    mrForcedRequest.open("GET",forceCookieUrl,false);&#13;
+	    mrForcedRequest.send();&#13;
+	    cookie = document.cookie;&#13;
+	}&#13;
+&#13;
+	/* Redirect to mobile equivalent URL if pref_mobile cookie exists */&#13;
+    if (pref_mob.test(cookie)) {&#13;
+        redirect();&#13;
+    }&#13;
+&#13;
+}(/myrecipes\.com/, location, document, 'http://www.myrecipes.com/static/inc/logo.html'));&#13;
+</script>
+    <meta name="ka_env" content="ti_savvis_ka_prod" />
+    <meta name="ka_page" content="recipe/show" />
+    <meta name="ka_model" content="slow-cooker-beef-brisket-10000001218726" />
+    <meta name="ka_model_name" content="Slow-cooker Beef Brisket" />
+    <meta name="ka_model_type" content="recipe" />
+    <script type="text/javascript">
+      window.omnitureHookFunction = function() {
+        if(typeof getCookie == 'function') { 
+          var recipeUpdated = getCookie('KACreatingRecipe') || getCookie('KAUpdatingRecipe');
+          if (recipeUpdated) {
+            var recipeIsPublic = true;
+            if (recipeIsPublic) {
+              s_time.eVar13 = 'public';
+            } else {
+              s_time.eVar13 = 'private';
+            }
+          }
+        }
+      }
+      var omni_newstout_id = 'MR Cookie';     
+    </script>
+    <meta name="recipe_average_rating" content="4.5" />
+    <meta name="recipe_name" content="Slow-cooker Beef Brisket" />
+    <meta name="edit_created" content="true" />
+    <meta property="og:title" content="Slow-cooker Beef Brisket | MyRecipes.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MyRecipes.com" />
+    <meta property="og:image" content="http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg" />
+    <meta property="og:description" content="Slow-cooker beef brisket is a wonderfully easy way to prepare this cut of beef. Serve shredded brisket on top of tortillas with your choice of toppings for a creative taco night." />
+    <meta property="og:url" content="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/" />
+    <meta property="fb:app_id" content="182096525173207" />
+    <meta property="jumptime:headline" content="Slow-cooker Beef Brisket" />
+    <meta property="jumptime:url" content="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/" />
+    <meta property="jumptime:image" content="true" />
+    <meta property="jumptime:imageurl" content="http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-m.jpg" />
+    <meta name="bitly-url" content="http://bit.ly/117nKp9" />
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+    <meta name="render-time" content="2013-10-17 13:18:39 -0400" />
+    <meta name="content-id" content="" />
+    <title>Slow-cooker Beef Brisket Recipe | MyRecipes.com</title>
+    <meta name="description" content="Slow-cooker beef brisket is a wonderfully easy way to prepare this cut of beef. Serve shredded brisket on top of tortillas with your choice of toppings for a creative taco night." />
+    <meta name="keywords" content="beef brisket slow cooker, slow cooker brisket, crock pot brisket, beef brisket crock pot" />
+    <meta name="ka_recipeName" content="Slow-cooker Beef Brisket" />
+    <meta name="ka_menuName" content="" />
+    <meta name="ka_pageName" content="displayRecipe:Slow-cooker Beef Brisket" />
+    <meta name="ka_ad_recipeID" content="10000001218726" />
+    <meta name="ka_ad_menuID" content="" />
+    <meta name="ka_ad_pub" content="Southern Living" />
+    <meta name="ka_ad_cookbook" content="" />
+    <meta name="ka_ad_course" content="Main Dishes" />
+    <meta name="ka_ad_cuisine" content="" />
+    <meta name="ka_ad_mainIng" content="Beef" />
+    <meta name="ka_excludeIng" content="" />
+    <meta name="ka_ad_diet" content="" />
+    <meta name="ka_ad_prep" content="Slow Cook" />
+    <meta name="ka_ad_convenience" content="Family,Freezable,Kid-Friendly,Make-Ahead,Quick/Easy" />
+    <meta name="ka_ad_season" content="" />
+    <meta name="ka_ad_franchise" content="" />
+    <meta name="ka_ad_cont" content="" />
+    <meta name="ka_cooktime" content="480" />
+    <meta name="ka_costperserving" content="" />
+    <meta name="ka_recipeRating" content="4" />
+    <meta name="ka_ad_specialIng" content="" />
+    <meta name="ka_ad_keyValuePairs" content="" />
+    <link rel="canonical" href="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/" />
+    <link rel="shortcut icon" href="http://img4.myrecipes.com/static/i/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="http://img4.myrecipes.com/static/i/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="http://img4.myrecipes.com/static/i/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="http://img4.myrecipes.com/static/i/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="http://img4.myrecipes.com/static/i/apple-touch-icon-144x144.png" />
+    <link rel="stylesheet" type="text/css" href="http://img4.myrecipes.com/static/c/global.css?buildlife=60715" media="all" />
+    <link href="http://img4.myrecipes.com/static/c/recipe.css?buildlife=60715" media="all" rel="stylesheet" type="text/css" />
+    <link href="http://img4.myrecipes.com/static/c/menus.css?buildlife=60715" media="all" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="http://img4.myrecipes.com/static/c/ie.css?buildlife=60715" /><![endif]-->
+<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="http://img4.myrecipes.com/static/c/lt-ie7.css?buildlife=60715" /><![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.optimizely.com/js/61589417.js"></script>
+    <script type="text/javascript" src="http://cdn.gigya.com/JS/socialize.js?apikey=2_HpHALCpCbkIUbgzW69kzWgT7KYymlgiiYSUzVWx17XtD3IRYvCchk6WUOXwqDVl8"></script>
+    <script type="text/javascript" src="http://js.adsonar.com/js/tw_adsonar.js"></script>
+    <script type="text/javascript" src="http://tiads.myrecipes.com/ads/tgx.js"></script>
+    <script type="text/javascript">var mrDinnerTonightRecipeIds = ['50400000111975','10000002011011','50400000120273','10000002001873','10000001963966','10000001918478','10000002012769','10000000642343','10000001185418','10000001918481','10000001723377','10000000604812','10000001963957','10000000226734','10000000491627','10000002012819','10000001973608','10000001981720','10000000642341','50400000115804','10000001654648','10000002001870','10000001940989','10000002010993','10000000642390','10000000780434','50400000122058','10000000226030','10000000549982','50400000122914','10000001142037'];</script>
+    <script type="text/javascript" src="http://img4.myrecipes.com/static/j/global.js?buildlife=60715"></script>
+    <script type="text/javascript" src="http://img4.myrecipes.com/static/j/ka.js?buildlife=60715"></script>
+    <script type="text/javascript" src="http://imgka.myrecipes.com/javascripts/ka.js?buildlife=60715"></script>
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://www.myrecipes.com/m/recipe/slow-cooker-beef-brisket-10000001218726/" />
+    <script src="http://myrecipes.groceryserver.com/groceryserver/api/script_v02.jsp?6bc8d72cbcc2edb79f292339dc685142" type="text/javascript"></script>
+    <script src="http://jsrails.timeinc.net/j/com.ticommunity.comm.js" type="text/javascript"></script>
+  </head>
+  <body>
+		<div id="omniture" style="display:none">&#13;
+			<script type="text/javascript">//&lt;![CDATA[&#13;
+				var s_account="timemyrecipesnew";&#13;
+			//]]&gt;</script><script type="text/javascript" src="http://img4.myrecipes.com/static/j/ext/omniture/myrecipes-consolidated.js?buildlife=60715"></script><script type="text/javascript" src="http://img4.myrecipes.com/static/j/ext/omniture/ka-omniture.js?buildlife=60715"></script><noscript>&#13;
+				<img src="http://timeinc.122.2o7.net/b/ss/timemyrecipesnew/1/H.21--NS/0?gn=myrecipes%7Cno%20javascript&amp;ch=myrecipes&amp;c16=general&amp;c17=D%3Dreferer" alt="log" width="1" height="1" /></noscript>&#13;
+		</div>
+
+<script type="text/javascript">
+   				$(document).ready(function(){
+   					if (!(false || this_c_type === 'lu-homepage')) {
+   						var sidebar_config = {
+   							badges: {
+   								facebook_link: hasFacebookLink(),facebook_like: hasFacebookLike(),google_plusone: hasGooglePlusOne(),pinterest: hasPinterest(),twitter:
+   hasTwitter(),email_badge: hasEmailBadge(),print_badge: hasPrintBadge(),mobile_badge: hasMobileBadge()
+   							}
+   						};
+   						$('#social-sidebar').mr_core('social_sidebar_init', sidebar_config);
+   					}
+   				});
+   			
+</script><!-- SSi Include  /static/inc/toplinks.html --><div class="topLinks clr">&#13;
+	<a class="skipTo" href="#mainContent">Skip to Main Content</a>
+	<div class="spcLinks">
+            		
+            <ul class="logoBar"><li class="ay"><a href="http://www.allyou.com/?xid=logobar-mr" title="All You" rel="nofollow" target="_blank">All You</a></li>
+               <li class="cx"><a href="http://www.coastalliving.com/?xid=logobar-mr" title="Coastal Living" rel="nofollow" target="_blank">Coastal Living</a></li>
+               <li class="cl"><a href="http://www.cookinglight.com/?xid=logobar-mr" title="Cooking Light" rel="nofollow" target="_blank">Cooking Light</a></li>
+               <li class="fw"><a href="http://www.foodandwine.com/?xid=logobar-mr" title="Food and Wine" rel="nofollow" target="_blank">Food and Wine</a></li>
+               <li class="hl"><a href="http://www.health.com/health/?xid=logobar-mr" title="Health" rel="nofollow" target="_blank">Health</a></li>
+               <li class="mr tab">My Recipes</li>
+               <li class="rs"><a href="http://www.realsimple.com/?xid=logobar-mr" title="Real Simple" rel="nofollow" target="_blank">Real Simple</a></li>
+               <li class="sl"><a href="http://www.southernliving.com/?xid=logobar-mr" title="Southern Living" rel="nofollow" target="_blank">Southern Living</a></li>
+               <li class="st"><a href="http://www.sunset.com/?xid=logobar-mr" title="Sunset" rel="nofollow" target="_blank">Sunset</a></li>
+            </ul></div>
+
+</div><!--  /div.topLinks -->&#13;
+<div class="wrap">&#13;
+	<!-- SSi Include  /static/inc/logo.html -->
+<div class="logo">
+	<div class="wrap2">
+		<a href="http://www.myrecipes.com/"><img src="http://img4.myrecipes.com/static/i/logo_myrecipes_header.gif" alt="My Recipes" /></a>
+	</div><!-- /div.wrap2 -->
+</div><!-- /div.logo -->&#13;
+	<!-- SSi Include /static/inc/searchbar.html -->
+<div class="searchbar">
+	<div class="wrap2">
+		<form class="search" method="get" action="http://search.myrecipes.com/search.html" onsubmit="omniSearch(this.Ntt.value);" enctype="application/x-www-form-urlencoded">
+			<div>
+				<label for="searchbox">Search MyRecipes.com</label>
+				<input type="text" id="searchbox" maxlength="100" value="" name="Ntt" /><input type="image" alt="Search" src="http://img4.myrecipes.com/static/i/searchglass.gif" /></div>
+			<ul id="search-nav"><li class="last link">
+                       <a class="search-link" href="http://search.myrecipes.com/nutrition-search.html?pid=nutrition-search">Nutrition Search</a>
+                   </li>
+			    <li class="link">
+			         <a class="search-link" href="http://www.myrecipes.com/ingredient-chef/?pid=ingredient-search">Ingredient Search</a>
+			    </li>
+			</ul></form><!-- /form.search -->
+		<script type="text/javascript">initSearchbox();</script><!-- /div.sbLinks --><div class="signinbar"></div>&#13;
+    	<!-- /div.signinbar -->			
+	</div><!-- /div.wrap2 -->
+</div><!-- /div.searchbar -->&#13;
+	<div class="nav x4-nav">&#13;
+&#13;
+	<div class="wrap2">&#13;
+&#13;
+		<ul><li class="main"><a href="http://www.myrecipes.com/"><span><img src="http://img4.myrecipes.com/static/i/nav-home.png" /></span></a>&#13;
+				<ul><li><a href="http://www.myrecipes.com/contests-and-sweepstakes/recipe-contests-sweepstakes-00420000000466/">Sweepstakes</a></li>&#13;
+					<li><a href="http://search.myrecipes.com/search.html?type=ct:Videos;&amp;Ntk=photo_sort&amp;Ns=p_has_photo%7C1">Video</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/community/">Community</a></li>&#13;
+					<li><a href="http://coupons.myrecipes.com/ccr/default.aspx?go=15010bn3310">Grocery Coupons</a></li>&#13;
+				</ul></li>&#13;
+			<li class="recipe-finder"><a href="http://www.myrecipes.com/recipe-finder/"><span>Recipes</span></a>&#13;
+				<ul><li><a href="http://www.myrecipes.com/recipe-finder/">Browse Recipes</a></li>&#13;
+					<li><a href="http://search.myrecipes.com/advanced-search.html">Advanced Recipe Search</a></li>&#13;
+					<li><a href="http://search.myrecipes.com/nutrition-search.html">Nutrition Recipe Search</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/recipe-finder/sponsor-recipes/">Sponsor Recipes</a></li>&#13;
+					<li><a href="http://search.myrecipes.com/search.html?type=ct:Recipes;rt:Community;">Member Recipes</a></li>&#13;
+				</ul></li>&#13;
+			<li class="my-recipe-file"><a href="http://www.myrecipes.com/r/my_recipe_file/"><span>My Recipe File</span></a>&#13;
+				<ul><li><a href="http://www.myrecipes.com/recipe/new/">Add a Recipe</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/r/my_recipe_file/saved_recipes/">Saved Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/r/my_recipe_file/shopping_lists/">Shopping Lists</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/r/my_recipe_file/saved_menus/">Saved Menus</a></li>&#13;
+				</ul></li>&#13;
+&#13;
+			<li class="quick-and-easy"><a href="http://www.myrecipes.com/quick-and-easy/"><span>Quick &amp; Easy</span></a>&#13;
+&#13;
+				<ul><li><a href="http://www.myrecipes.com/no-cook-recipes/">No Cook Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/chicken-recipes/">Chicken Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/make-ahead-recipes/">Make Ahead Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/slow-cooker-recipes/">Slow-Cooker Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/quick-and-easy/5-ingredients-or-less/five-and-dine-00420000006245/">5 Ingredient Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/quick-and-easy/15-minute-recipes/">15-Minute Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/quick-and-easy/dinner-tonight/">Dinner Tonight</a></li>&#13;
+&#13;
+				</ul></li>&#13;
+&#13;
+			<li class="menus"><a href="http://www.myrecipes.com/menus/"><span>Menus</span></a>&#13;
+&#13;
+				<ul><li><a href="http://www.myrecipes.com/menus/menu-finder/">Menu Finder</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/holidays-and-occasions/">Holidays</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/appetizer-recipes/">Appetizers</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/cocktail-recipes/">Cocktails</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/dessert-recipes/">Desserts</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/wedding-and-shower-recipes/">Weddings &amp; Showers</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/menus/weeknight-meal-planners-00420000011372/">Weeknight Meal Plans</a></li>&#13;
+&#13;
+				</ul></li>&#13;
+&#13;
+			<li class="healthy-diet"><a href="http://www.myrecipes.com/healthy-diet/"><span>Healthy</span></a>&#13;
+				<ul><li><a href="http://www.myrecipes.com/diabetic-recipes/">Diabetic Recipes</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/gluten-free-recipes/">Gluten Free</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/heart-healthy-recipes/">Heart Healthy</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/vegetarian-recipes/">Vegetarian Recipes</a></li>&#13;
+&#13;
+					<li><a href="http://www.myrecipes.com/healthy-diet/calorie-counts/">Calorie Counts</a></li>&#13;
+&#13;
+				</ul></li>&#13;
+&#13;
+			<li class="how-to"><a href="http://www.myrecipes.com/how-to/video/cooking-videos-00420000005876/"><span>How-To Video</span></a></li>&#13;
+&#13;
+			<li class="kids"><a href="http://www.myrecipes.com/kids/"><span>Kids</span></a>&#13;
+&#13;
+				<ul><li><a href="http://www.myrecipes.com/t/kid-friendly/snacks/">Snacks</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/t/kid-friendly/lunches-and-sandwiches/">Lunches</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/t/kid-friendly/dinners/">Dinners</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/kids/healthy-kids/">Healthy Kids</a></li>&#13;
+					<li><a href="http://www.myrecipes.com/kids/play-with-your-food/">Video</a></li>&#13;
+&#13;
+				</ul></li>&#13;
+      <li class="casserole-recipes rotating-channel"><a href="http://www.myrecipes.com/casserole-recipes/"><span>Casseroles</span></a>&#13;
+      	<ul><li><a href="http://www.myrecipes.com/t/casseroles/beef/">Beef Casseroles</a></li>&#13;
+			<li><a href="http://www.myrecipes.com/t/casseroles/chicken/">Chicken Casseroles</a></li>&#13;
+			<li><a href="http://www.myrecipes.com/t/casseroles/easy/">Easy Casseroles</a></li>&#13;
+			<li><a href="http://www.myrecipes.com/recipe-finder/sponsor-recipes/country-crock-casseroles-00420000022256/">Tuesday Night <br />Country Crock Casseroles</a></li>&#13;
+&#13;
+		</ul></li>&#13;
+			<li class="halloween-recipes rotating-channel"><a href="http://www.myrecipes.com/halloween-recipes/"><span>Halloween</span></a></li>&#13;
+    </ul></div>&#13;
+&#13;
+</div>&#13;
+&#13;
+	<div class="content">&#13;
+		<div class="wrap2">&#13;
+			<a name="mainContent" id="mainContent" tabindex="-1"></a>
+
+
+<div itemscope="" itemtype="http://data-vocabulary.org/Recipe">
+
+
+<div class="pageHead">
+     <div class="breadcrumb">
+  <a href="http://www.myrecipes.com/recipe-finder/">Recipes</a> &gt; Slow-cooker Beef Brisket
+</div>
+  
+     <h1 class="x4-headline" itemprop="name">Slow-cooker Beef Brisket</h1>
+</div>
+     <div class="colAB">
+        <div class="recipeCont clr">
+           <div class="rHero clr">
+                <div class="featPhotoA">
+
+  <div class="photo">
+         <a class="enlarge" rel="group1" title="">
+          <img alt="Slow-cooker Beef Brisket Recipe" height="300" itemprop="photo" src="http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg" title="Slow-cooker Beef Brisket Recipe" width="300" /></a>
+              <a id="uploadPhotosLink" class="photoCount alpha60 cboxElement loading" href="/r/overlays/recipe_photo_upload.html?recipeID=slow-cooker-beef-brisket-10000001218726"><strong>Upload a recipe photo</strong></a>
+  
+  </div>
+
+  <div class="inner">
+     <div class="credit">
+          
+    </div>
+  </div>
+
+</div>
+<!-- /div.featPhotoA -->
+  
+                <div class="rHeroB">
+
+                   <div class="toolbar">
+  <ul class="shareIcons"><li class="pinIt">
+      <a href="http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.myrecipes.com%2Frecipe%2Fslow-cooker-beef-brisket-10000001218726%2F&amp;media=http%3A%2F%2Fimg4-3.myrecipes.timeinc.net%2Fi%2Frecipes%2Fsl%2F06%2F08%2Fbeef-brisket-sl-1218726-l.jpg&amp;description=Slow-cooker+Beef+Brisket+%7C+MyRecipes.com" target="_blank" onclick="omniCommunityTracker('pin-it-ctr');"></a>
+    </li>
+    <li class="googlePlus">
+      <script type="text/javascript">
+        window.google_plus_ctr_onclick = function() {
+          omniCommunityTracker('google-plus-ctr');
+        };
+      </script><plusone xmlns:g="http://base.google.com/ns/1.0" annotation="none" size="standard" callback="google_plus_ctr_onclick"></plusone></li>
+    <li class="tweet"><a target="_blank" onclick="omniCommunityTracker('share-Twitter-ctr');" href="https://twitter.com/share?url=http%3A%2F%2Fwww.myrecipes.com%2Frecipe%2Fslow-cooker-beef-brisket-10000001218726%2F&amp;text=You%27ve+Got+To+Taste+This+%40My_Recipes"></a></li>
+    <li class="fbLike">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.myrecipes.com%2Frecipe%2Fslow-cooker-beef-brisket-10000001218726%2F&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowtransparency="true"></iframe>
+    </li>
+  </ul><script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+  </script></div>
+
+
+
+
+
+                    <h2 class="dek" itemprop="summary"></h2><p><a href="http://www.myrecipes.com/slow-cooker-recipes/">Slow-cooker</a> beef brisket is a wonderfully easy way to prepare this cut of beef.&#160; Serve shredded brisket on top of tortillas with your choice of toppings for a creative taco night.</p>
+
+                    <div class="rating1" itemprop="review" itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate">
+    <span itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating">
+      <span itemprop="average" style="display:none">5.0</span>
+    </span>
+    <span itemprop="reviews" style="display:none">4</span>
+    
+    <div class="rating1star starRating" data-score="4.5"></div>
+
+    <p class="rating1desc"></p>
+
+    <div class="rating1rev">
+      <a href="#reviewForm">Rate and Review</a> |
+     <a href="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/ratings/">Read Reviews (<span itemprop="count">2</span>)</a>
+    </div>
+
+</div>
+
+                       <div class="recipe411">
+        <div><strong>Yield:</strong> <span itemprop="yield">Makes 6 servings</span></div>
+
+
+
+
+             <div class="videolinks"><strong>Videos:</strong>
+                <a href="http://www.myrecipes.com/how-to/slow-cooker-tip-no-peeking-10000001925768/" class="video videoLinkOverlay"><br />
+                  Slow-Cooker Tip: No Peeking</a>
+                <a href="http://www.myrecipes.com/how-to/video/chopping-onion-10000001614015/" class="video videoLinkOverlay"><br />
+                  How to Chop an Onion &#160;</a>
+              </div>
+  
+   </div>
+
+               </div> <!-- /div.rHeroB -->
+           </div> <!-- /div.rHero clr -->
+           <div class="colA">
+                 <div class="sponsorAd">
+<span>Recipe from</span>
+<a href="http://www.southernliving.com/"><img alt="Southern Living" src="http://img4.myrecipes.com/static/i/from_southernliving.png" /></a>
+ </div>
+    
+
+   <div class="moreFromPub">
+   <h4>More From 
+      <i>Southern Living</i>
+   </h4>
+   <ul><script type="text/javascript">&#13;
+	if (typeof adFactory != 'undefined') {&#13;
+		adFactory.getCmAd(142, 70, "article", "text").write();&#13;
+	}&#13;
+</script><li>
+         <a href="http://www.southernliving.com/food/holidays-occasions/halloween-party-appetizers-drinks-recipes-00400000055258/" target="_blank">Halloween Party Appetizers</a>
+      </li>
+      <li>
+         <a href="http://www.southernliving.com/food/holidays-occasions/thanksgiving-dinner-side-dishes-00400000055576/" target="_blank">Spectacular Thanksgiving Sides</a>
+      </li>
+      <li>
+         <a href="http://www.southernliving.com/food/holidays-occasions/thanksgiving-pies-00417000084685/" target="_blank">Dazzling Thanksgiving Pies</a>
+      </li>
+      <li>
+         <a href="http://www.southernliving.com/food/holidays-occasions/apple-recipes-00400000053069/" target="_blank">101 Crisp &amp; Juicy Apple Recipes</a>
+      </li>
+      <li>
+         <a href="http://www.southernliving.com/food/kitchen-assistant/" target="_blank">Monthly Recipes</a>
+      </li>
+      <li>
+         <a href="http://search.myrecipes.com/search.html?type=ct:Recipes;et:Southern+Living;&amp;Ntk=photo_sort&amp;Ns=p_has_photo%7C1">Search Southern Living Recipes</a>
+      </li>
+   </ul></div>
+
+
+
+     <div class="recipeTime">
+
+    <h4>Recipe Time</h4>
+
+    <p>
+          <b>Cook Time:</b>
+                <time itemprop="cookTime" datetime="PT8H0M">
+                  8 Hours
+                </time><br clear="none" /><b>Prep Time:</b>
+                <time itemprop="prepTime" datetime="PT0H15M">
+                  15 Minutes
+                </time><br clear="none" /></p>
+
+</div>
+
+
+
+
+  
+           </div> <!-- /div.colA -->
+           <div class="colB">
+            <div class="recipeDetails">
+        <div id="groceryInfo" class="groceryInfo"></div>
+    <br clear="none" /><h3>Ingredients</h3>
+    <div id="enterGroceryInfo" class="enterGroceryInfo"></div>
+    <div class="toolbar clr">
+     <ul class="pt1"><li class="print" onclick="omniCommunityTracker('print');"><a href="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/print/" target="_new">Print</a></li>
+         <li class="email"><span class="st_email_custom"><a>Email</a></span></li>
+            <li class="send_to_mobile">
+                <a href="#" class="sendRecipeToPhone">Send To Mobile</a>
+            </li>
+      </ul><ul class="pt2"><li><a href="#" class="save1">Save Recipe</a></li>
+         <li><a href="#" class="save2">Add to Menu</a></li>
+         <li><a href="#" class="save3">Add to Shopping List</a></li>
+          <script> recipe_is_included = false; </script><li class="ecookbook">
+               <a href="#" id="add-recipe-to-eb" class="can_click">Add to eCookBook</a><a class="learn-more">Learn more</a>
+            </li>
+      </ul></div>
+
+    
+    <ul><li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">2 </span>
+                <span itemprop="name"> medium onions, thinly sliced</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">2 </span>
+                <span itemprop="name"> celery ribs, thinly sliced</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">2 </span>
+                <span itemprop="name"> garlic cloves, pressed</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">1 </span>
+                <span itemprop="name"> (2- to 3-lb.) beef brisket</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">2 teaspoons</span>
+                <span itemprop="name"> salt</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">1 1/2 teaspoons</span>
+                <span itemprop="name"> ground chipotle powder</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount">1 cup</span>
+                <span itemprop="name"> coarsely chopped fresh cilantro</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount"> </span>
+                <span itemprop="name"> Flour tortillas</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount"> </span>
+                <span itemprop="name"> Toppings: shredded Mexican cheese blend, sour cream, salsa, chopped fresh cilantro</span>
+                <span itemprop="preparation"> </span>
+              </li>
+              <li itemprop="ingredient" itemscope="" itemtype="http://data-vocabulary.org/RecipeIngredient">
+                <span itemprop="amount"> </span>
+                <span itemprop="name"> Lime wedges</span>
+                <span itemprop="preparation"> </span>
+              </li>
+    </ul><h3>Preparation</h3>
+    <ol itemprop="instructions"><li>1. Place first 3 ingredients in a 6-qt. slow cooker.</li>
+<li>2. Trim fat from brisket; cut brisket into 3-inch pieces. Rub brisket pieces evenly with 2 tsp. salt and 1 1/2 tsp. chipotle powder, and place on top of vegetables in slow cooker. Top with 1 cup cilantro.</li>
+<li>3. Cover and cook on HIGH 6 to 8 hours or until brisket pieces shred easily with a fork.</li>
+<li>4. Remove brisket from slow cooker, and cool slightly. Using 2 forks, shred meat into bite-size pieces. Serve in flour tortillas with desired toppings and lime wedges.</li>
+    </ol><div>
+  Note: <p>Select a brisket that is uniform in thickness to make shredding the meat easier.</p>
+</div>
+
+
+    <div class="byline">
+  <p class="author">Wanda Jensen, El Paso, Texas, <a href="http://www.southernliving.com/"><i><b><span itemprop="author">Southern Living</span></b></i></a>
+    <br clear="none" /><span itemprop="published">AUGUST 2006</span>
+  </p>
+</div>
+
+
+    
+
+    
+
+    <script type="text/javascript">&#13;
+	if (typeof adFactory != 'undefined') {&#13;
+		ad = adFactory.getAd(142,70);&#13;
+		ad.write();&#13;
+	}&#13;
+</script></div>
+
+            <div class="relatedList">
+  <h5>Related Recipes</h5>
+  <ul><li><a href="http://www.myrecipes.com/dinner-recipes/">Dinner Recipes</a></li>
+      <li><a href="http://www.myrecipes.com/main-dish-and-entree-recipes/">Main Dishes and Entr&#233;es</a></li>
+      <li><a href="http://www.myrecipes.com/slow-cooker-recipes/">Slow-Cooker Recipes</a></li>
+  </ul></div>
+
+
+             
+
+            <div class="my_notes msgOnly">
+  <h5>My Notes</h5>
+  <p class="dek">Only you will be able to view, print, and edit this note.</p>  
+
+    <a class="add_note">Add Note</a>
+
+    <div id="note_display" class="dek" style="display:none;"></div>
+    <div class="note_box" style="display:none;">
+      <form id="note_form">
+        <textarea id="note_details" name="note[details]"></textarea><p class="chars_remain"><span class="count">1000</span> characters remaining</p>
+        <div class="errors"></div>
+        <input class="btn save" type="submit" name="save_note" value="" /><a href="#" class="cancel">Cancel</a>
+     </form>
+   </div>
+</div>
+
+
+            <br clear="none" /></div> <!-- /div.colB -->
+
+           <div class="outbrainABcol">
+              <div class="OUTBRAIN" data-widget-id="AR_1" data-ob-template="myrecipes"></div>
+           </div> 
+
+
+           <div class="menuReviews">
+  <div class="header">
+    <h3>Ratings and Reviews (<span id="reviewHeaderCount"></span>)</h3>
+
+    <div id="ratingsHistogram"></div>
+    <script type="text/html" id="histogram_tmpl">
+&lt;div class="reviewChart"&gt;
+    	&lt;table cellpadding="0" cellspacing="0" border="0"&gt;
+		&lt;tr&gt;
+		&lt;th scope="row"&gt;5 star&lt;/th&gt;
+		&lt;td&gt;&lt;div class="bar"&gt;&lt;div class="inner" style="width:${fiveStarPercentage}px;"&gt;${fiveStarPercentage}%&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+		&lt;td&gt;${fiveStarCount}&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;th scope="row"&gt;4 star&lt;/th&gt;
+		&lt;td&gt;&lt;div class="bar"&gt;&lt;div class="inner" style="width:${fourStarPercentage}px;"&gt;${fourStarPercentage}%&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+		&lt;td&gt;${fourStarCount}&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;th scope="row"&gt;3 star&lt;/th&gt;
+		&lt;td&gt;&lt;div class="bar"&gt;&lt;div class="inner" style="width:${threeStarPercentage}px;"&gt;${threeStarPercentage}%&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+		&lt;td&gt;${threeStarCount}&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;th scope="row"&gt;2 star&lt;/th&gt;
+		&lt;td&gt;&lt;div class="bar"&gt;&lt;div class="inner" style="width:${twoStarPercentage}px;"&gt;${twoStarPercentage}%&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+		&lt;td&gt;${twoStarCount}&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;th scope="row"&gt;1 star&lt;/th&gt;
+		&lt;td&gt;&lt;div class="bar"&gt;&lt;div class="inner" style="width:${oneStarPercentage}px;"&gt;${oneStarPercentage}%&lt;/div&gt;&lt;/div&gt;&lt;/td&gt;
+		&lt;td&gt;${oneStarCount}&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;/table&gt;
+		&lt;strong&gt;
+           ${totalCount} {{if pluralize}}
+            Reviews
+            {{else}}
+            Review
+            {{/if}}
+        &lt;/strong&gt;
+	&lt;/div&gt;
+</script><div class="reviewInfo">
+        <div class="starRating"></div>
+        <span class="rating1desc"></span>
+        <a href="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/ratings/" class="moreReviews">Read More Reviews</a>
+    </div>
+    <div class="addReview"><a href="#reviewForm" class="btnRed"><span>Add a Review</span></a></div>
+  </div>
+  <ul class="reviews"><li class="review clr">
+  <div class="username">TriMama</div>
+  <div class="text">
+    <p>Delicious!  I added a bottle of beer which I got from another recipe.  The beef was really tender and the cilantro and other toppings gave it great zing.</p>
+  </div>
+  <div class="info">
+    <div class="starRatingSmall star5"></div>
+    <span class="ratingDescription starDesc">
+      Outstanding
+    </span>
+    <span class="reviewLocation">
+      
+    </span>
+    <span class="postedOn">
+      11/02/12
+    </span>    
+  </div>
+</li>
+<li class="review clr">
+  <div class="username">kawaters</div>
+  <div class="text">
+    <p>I have made this several times for large and small groups, always a crowd pleaser and so easy!</p>
+  </div>
+  <div class="info">
+    <div class="starRatingSmall star5"></div>
+    <span class="ratingDescription starDesc">
+      Outstanding
+    </span>
+    <span class="reviewLocation">
+      
+    </span>
+    <span class="postedOn">
+      12/14/11
+    </span>    
+  </div>
+</li>
+
+  </ul></div>
+
+<script type="text/html" id="review_tmpl">
+  {{if mine}}
+    &lt;li class="review clr myReview" id="myReview"&gt;
+  {{else}}
+    &lt;li class="review clr"&gt;
+  {{/if}}
+       &lt;div class="username"&gt;${name}&lt;/div&gt;
+       &lt;div class="text"&gt;
+       &lt;p&gt;${text}&lt;/p&gt;
+
+      {{if mine}}
+        &lt;div class="actions"&gt;
+          &lt;a href="#reviewForm" class="edit"&gt;Edit&lt;/a&gt;
+          &lt;span class="separator"&gt;|&lt;/span&gt;
+          &lt;a href="#" class="remove"&gt;Remove&lt;/a&gt;
+        &lt;/div&gt;
+      {{/if}}
+    &lt;/div&gt;
+    &lt;div class="info"&gt;
+        &lt;div class="starRatingSmall star${score}"&gt;&lt;/div&gt;
+        &lt;span class="ratingDescription starDesc"&gt;${score_description}&lt;/span&gt;
+        &lt;span class="reviewLocation"&gt;${reviewer_location}&lt;/span&gt;
+        &lt;span class="postedOn"&gt;${postedAt}&lt;/span&gt;
+    &lt;/div&gt;
+
+    {{if mine}}
+      &lt;div class="myReviewIcon"&gt;My Review&lt;/div&gt;
+    {{/if}}
+  &lt;/li&gt;
+</script><div class="menuAddReviewForm" id="reviewForm">
+  <a href="http://www.myrecipes.com/recipe/slow-cooker-beef-brisket-10000001218726/ratings/" class="moreReviews">Read More Reviews</a>
+
+  <div class="form">
+  <form id="new_review_form" method="get" action="#" enctype="application/x-www-form-urlencoded">
+    <div class="header clr">
+      <h3 class="form_title">Rate and Review</h3>
+
+      <span class="note">All fields required.</span>
+      <a class="seeTips">See Tips</a>
+
+      <span class="username"></span>
+
+      <div class="helpBalloon">
+        <h3>
+          TIPS<br clear="none" />Consider these questions when writing 
+          your review:
+        </h3>
+
+        <ul><li>How much did you like the dish and would you make it again?</li>
+          <li>Is the recipe appropriate for special occasions or everyday meals?</li>
+          <li>Did you alter ingredients and instructions? If so, how?</li>
+          <li>What did you serve with the dish?</li>
+          <li>Do you have any hints about making this recipe?</li>
+        </ul><div class="pointer"></div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="errors"></div>
+
+      <div class="myRatingContainer clr">
+        <span class="label">My Rating:</span>
+        <div class="starRating"></div>
+        <span class="instructions starDesc">Click to apply your rating</span>
+
+        <div class="locationContainer">
+          <span class="location">Location: <span class="city"></span> <span class="state"></span></span>
+          <input id="showLocation" type="checkbox" name="review[reviewer_location]" checked="checked" />
+            Display location
+        </div>
+      </div>
+
+      <div class="alreadyReviewed">
+        <p>You have already rated and reviewed this recipe</p>
+        <a href="#myReview">Go to your review.</a>
+      </div>
+
+      <div class="myReviewContainer clr">
+        <label for="review_body">My Review:</label>
+        <textarea id="review_body" name="review[body]" cols="50" rows="7"></textarea><span class="charCount">
+          <span class="value">1000</span> characters remaining
+        </span>
+      </div>
+
+      <a class="btnRed post" href="#"><span>Post</span></a>
+
+      <span class="shareFBcheckbox">
+        <input type="checkbox" id="shareFB" />
+        Share on Facebook
+      </span>
+    </div>
+  </form>
+</div>
+
+</div>
+
+
+           <div class="recipeGlance">
+  <h5>Slow-cooker Beef Brisket Recipe at a Glance</h5>
+  <ul><li>
+        <strong>COURSE:</strong>
+        <a href="http://www.myrecipes.com/main-dish-and-entree-recipes/"><span itemprop="recipeType">Main Dishes</span></a>
+      </li>
+      <li>
+        <strong>CONVENIENCE:</strong>
+        <a href="http://www.myrecipes.com/family-recipes/"><span itemprop="recipeType">Family</span></a>, <a href="http://www.myrecipes.com/freezer-recipes/"><span itemprop="recipeType">Freezable</span></a>, <a href="http://www.myrecipes.com/kids/"><span itemprop="recipeType">Kid-Friendly</span></a>, <a href="http://www.myrecipes.com/make-ahead-recipes/"><span itemprop="recipeType">Make-Ahead</span></a>, <a href="http://www.myrecipes.com/quick-and-easy/"><span itemprop="recipeType">Quick/Easy</span></a>
+      </li>
+      <li>
+        <strong>MAIN INGREDIENT:</strong>
+        <a href="http://www.myrecipes.com/beef-recipes/"><span itemprop="recipeType">Beef</span></a>
+      </li>
+      <li>
+        <strong>COOKING METHOD:</strong>
+        <a href="http://www.myrecipes.com/slow-cooker-recipes/"><span itemprop="recipeType">Slow Cook</span></a>
+      </li>
+  <li><strong>PUBLICATION: </strong><a href="http://www.myrecipes.com/southern-living-recipes/"><span itemprop="recipeType">Southern Living</span></a></li> 
+  </ul></div>
+           
+        </div> <!-- /div.recipeCont -->
+     </div> <!-- /div.colAB -->
+
+     <div class="colC">
+       
+<div class="triple">
+  <h3>More Recipes for Main Dishes</h3>
+  <ul class="clr"><li>
+      <div class="tout">
+        <div class="img">
+          <a href="/recipe/braised-brisket-with-sweet-potatoes-10000001924638/">
+            <img src="http://img4-3.myrecipes.timeinc.net/i/recipes/ay/09/10/braised-brisket-ay-1924638-s.jpg" alt="Braised Brisket with Sweet Potatoes" width="75" height="75" /></a>
+        </div>
+        <div class="txt">
+          <h4><a href="/recipe/braised-brisket-with-sweet-potatoes-10000001924638/" class="x4-editorial-tout-headline-clickable-75x75">Braised Brisket with Sweet Potatoes</a></h4>
+          <div class="attr">
+            All You
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="tout">
+        <div class="img">
+          <a href="/recipe/mediterranean-brisket-10000001951925/">
+            <img src="http://img4-3.myrecipes.timeinc.net/i/recipes/ay/10/02/mediterranean-brisket-ay-s.jpg" alt="Mediterranean Brisket" width="75" height="75" /></a>
+        </div>
+        <div class="txt">
+          <h4><a href="/recipe/mediterranean-brisket-10000001951925/" class="x4-editorial-tout-headline-clickable-75x75">Mediterranean Brisket</a></h4>
+          <div class="attr">
+            All You
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="tout">
+        <div class="img">
+          <a href="/recipe/texas-style-barbecued-brisket-50400000118361/">
+            <img src="http://img4-2.myrecipes.timeinc.net/i/recipes/sl/12/01/texas-style-barbecued-beef-sl-s.jpg" alt="Texas-Style Barbecued Beef Brisket" width="75" height="75" /></a>
+        </div>
+        <div class="txt">
+          <h4><a href="/recipe/texas-style-barbecued-brisket-50400000118361/" class="x4-editorial-tout-headline-clickable-75x75">Texas-Style Barbecued Beef Brisket</a></h4>
+          <div class="attr">
+            Southern Living
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul></div>
+
+
+
+<div class="adRt">&#13;
+<span class="adtext"><span>advertisement</span></span>&#13;
+<script type="text/javascript">
+	var sizes = new Array("300x250", "300x600", "300x1050");
+	var adMulti300 = adFactory.getMultiAd(sizes);
+	adMulti300.write();
+</script></div>
+
+<div id="ingredient-search-widget">&#13;
+    <div class="ad-header">&#13;
+	<div>&#13;
+		<script type="text/javascript">&#13;
+			if (typeof adFactory != 'undefined') {&#13;
+				var ad = adFactory.getAd(100,75);&#13;
+				ad.write();&#13;
+			}&#13;
+		</script></div>&#13;
+</div>&#13;
+    <form id="ingredient-search-form" method="get" action="http://search.myrecipes.com/ingredient-chef.html">&#13;
+        <ol><li>&#13;
+                <input type="text" name="ingredient-widget-00" id="ingredient-widget-00" /></li>&#13;
+            <li class="plus"></li>&#13;
+            <li>&#13;
+                <input type="text" name="ingredient-widget-01" id="ingredient-widget-01" /></li>&#13;
+            <li class="plus"></li>&#13;
+            <li>&#13;
+                <input type="text" name="ingredient-widget-02" id="ingredient-widget-02" /></li>&#13;
+            <li class="button-bar">&#13;
+               <input type="submit" value="Get Recipes!" class="get-recipes-submit" /></li>&#13;
+            <li class="error-message">&#13;
+                <p>Enter at least one ingredient</p>&#13;
+            </li>&#13;
+        </ol></form>&#13;
+</div>&#13;
+<script type="text/javascript">&#13;
+	jQuery(function($) {&#13;
+	    $('#ingredient-search-widget').mr_core('ingredient_search_init', &#13;
+	    		'ingredient-widget-0', &#13;
+	    		['e.g. fish, chicken', 'e.g. rice, pasta', 'e.g. basil, cheese' ],&#13;
+	    		function() {omniCommunityTracker('ic-search-module-button');});&#13;
+	});&#13;
+</script><!-- http://www.myrecipes.com/static/newsletters/cookie-countdown-recipe-rightrail.txt --><div class="newsSignupRR clr">&#13;
+     <div class="txt">&#13;
+	<h3>Do you love cookies?</h3>&#13;
+	<div class="img">&#13;
+		<img src="http://img4.myrecipes.com/static/i/nl-cookies-small.jpg" alt="Cookie Countdown" width="75" height="75" /></div>&#13;
+	<div class="dek">We do too! Get your favorite holiday cookies delivered to your inbox.(Nov.-Dec.)</div>&#13;
+        <form onsubmit="omniNewsTracker(this.sub.value);" action="http://ebm.cheetahmail.com/r/regf2" method="post" enctype="application/x-www-form-urlencoded">&#13;
+	   <div>&#13;
+          	<input type="hidden" name="aid" value="1078531716" /><input type="hidden" name="n" value="20" /><input type="hidden" name="sub" value="1525058577" /><input type="hidden" name="re" value="http://www.myrecipes.com/static/shells/cheetahmail/newsletter-thankyou-pop.html" /><input type="hidden" name="MYRECIPES_SOURCE" value="recipe_rightrail" /><input type="text" id="email" name="email" class="textboxDefault" value="Your E-mail Address" /><input type="image" src="http://img4.myrecipes.com/static/i/btn-submitSmall.png" /></div>&#13;
+	</form>&#13;
+	<div class="info"><a href="http://www.myrecipes.com/newsletter/">See More Newsletters</a> | <a href=" http://f.chtah.com/i/1/1078531716/CookieCountdown.html" class="popupNL">View Sample</a></div>&#13;
+	<div class="privacy"><img src="http://img4-1.myrecipes.timeinc.net/static/i/icon-privacy.png" width="16" height="16" alt="" /> We Respect Your Privacy. <a href="http://cgi.timeinc.net/cgi-bin/mail/dnp/privacy_centralized.cgi/myrecipes?d_source=E">Privacy Policy</a></div>&#13;
+     </div>&#13;
+  </div>&#13;
+  <script type="text/javascript">var omni_newstout_id = 'MR Cookie';</script><div class="outbrainCcol">
+   <div class="OUTBRAIN" data-widget-id="AR_6" data-ob-template="myrecipes"></div>
+</div>
+
+	&#13;
+<div class="adRt">&#13;
+	<script type="text/javascript">&#13;
+	if (typeof adFactory != 'undefined') {			&#13;
+		var adCm = adFactory.getCmAd(300, 300,"recipes","ofie");			&#13;
+		adCm.write();&#13;
+	}&#13;
+	</script></div>
+
+<div class="quigo">&#13;
+	<script type="text/javascript">&#13;
+		google_ad_client = "ca-timeinc-myrecipes-bah";&#13;
+		google_ad_channel = "other";&#13;
+	</script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>
+  
+     </div>
+     <!-- /div.colC -->
+
+
+  <script type="text/javascript" id="recipe_json">
+   var this_recipe = {"recipe":{"cook_times":[["cook_time","8:00"],["prep_time","0:15"]],"created_at":"2011-04-01T22:49:29-04:00","deleted_at":0,"description":"&lt;p&gt;&lt;a href=\"http://www.myrecipes.com/slow-cooker-recipes/\"&gt;Slow-cooker&lt;/a&gt; beef brisket is a wonderfully easy way to prepare this cut of beef.\u00a0 Serve shredded brisket on top of tortillas with your choice of toppings for a creative taco night.&lt;/p&gt;","edit_created":true,"flag_count":null,"id":70116,"ingredients":[{"name":"medium onions, thinly sliced","position":1,"amount":"2","units":"","preparation":"","is_label":false,"grocery_aisle":"produce","validation_context":null,"errors":{}},{"name":"celery ribs, thinly sliced","position":2,"amount":"2","units":"","preparation":"","is_label":false,"grocery_aisle":"produce","validation_context":null,"errors":{}},{"name":"garlic cloves, pressed","position":3,"amount":"2","units":"","preparation":"","is_label":false,"grocery_aisle":"produce","validation_context":null,"errors":{}},{"name":"(2- to 3-lb.) beef brisket","position":4,"amount":"1","units":"","preparation":"","is_label":false,"grocery_aisle":"meat","validation_context":null,"errors":{}},{"name":"salt","position":5,"amount":"2","units":"teaspoons","preparation":"","is_label":false,"grocery_aisle":"spices","validation_context":null,"errors":{}},{"name":"ground chipotle powder","position":6,"amount":"1 1/2","units":"teaspoons","preparation":"","is_label":false,"grocery_aisle":"spices","validation_context":null,"errors":{}},{"name":"coarsely chopped fresh cilantro","position":7,"amount":"1","units":"cup","preparation":"","is_label":false,"grocery_aisle":"produce","validation_context":null,"errors":{}},{"name":"Flour tortillas","position":8,"amount":"","units":"","preparation":"","is_label":false,"grocery_aisle":"special","validation_context":null,"errors":{}},{"name":"Toppings: shredded Mexican cheese blend, sour cream, salsa, chopped fresh cilantro","position":9,"amount":"","units":"","preparation":"","is_label":false,"grocery_aisle":"dairy","validation_context":null,"errors":{}},{"name":"Lime wedges","position":10,"amount":"","units":"","preparation":"","is_label":false,"grocery_aisle":"produce","validation_context":null,"errors":{}}],"is_public":true,"legacy_id":null,"main_image_id":null,"name":"Slow-cooker Beef Brisket","preparation":"&lt;p&gt;1. Place first 3 ingredients in a 6-qt. slow cooker.&lt;/p&gt;&lt;p&gt;2. Trim fat from brisket; cut brisket into 3-inch pieces. Rub brisket pieces evenly with 2 tsp. salt and 1 1/2 tsp. chipotle powder, and place on top of vegetables in slow cooker. Top with 1 cup cilantro.&lt;/p&gt;&lt;p&gt;3. Cover and cook on HIGH 6 to 8 hours or until brisket pieces shred easily with a fork.&lt;/p&gt;&lt;p&gt;4. Remove brisket from slow cooker, and cool slightly. Using 2 forks, shred meat into bite-size pieces. Serve in flour tortillas with desired toppings and lime wedges.&lt;/p&gt;","profile_id":null,"ratings_count":4,"related_recipe_collections":[{"name":"Dinner Recipes","link_url":"http://www.myrecipes.com/dinner-recipes/","image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/ck/09/11/scallop-piccata-ck-1932630-s.jpg"},{"name":"Main Dishes and Entr\u00e9es","link_url":"http://www.myrecipes.com/main-dish-and-entree-recipes/","image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/rs/2006/chicken-dumplings-rs-1141202-s.jpg"},{"name":"Slow-Cooker Recipes","link_url":"http://www.myrecipes.com/slow-cooker-recipes/","image_url":"http://img4-2.myrecipes.timeinc.net/i/recipes/ck/09/01/smoky-chili-ck-1867598-s.jpg"}],"serving_size":null,"servings":null,"short_url":"http://bit.ly/117nKp9","sortable_name":"slowcooker beef brisket","text_ingredients":null,"total_ratings_score":18,"updated_at":"2013-08-29T01:39:11-04:00","user_photo_content_type":null,"user_photo_created_at":null,"user_photo_file_name":null,"user_photo_file_size":null,"user_photo_updated_at":null,"ratings_summary_with_counts":{"5":3,"3":1,"1":0,"2":0,"4":0},"average_rating":4.5,"permalink":"slow-cooker-beef-brisket-10000001218726","courses":[{"tag":{"context_type":"course","created_at":"2011-04-01T15:30:49-04:00","id":10194,"name":"Main Dishes","rc_tag_id":"10321.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/main-dish-and-entree-recipes/"}}],"main_ingredients":[{"tag":{"context_type":"main_ingredient","created_at":"2011-04-01T15:30:49-04:00","id":10205,"name":"Beef","rc_tag_id":"10332.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/beef-recipes/"}}],"cuisines":[],"occasions":[],"conveniences":[{"tag":{"context_type":"convenience","created_at":"2011-04-01T15:30:50-04:00","id":10315,"name":"Family","rc_tag_id":"10442.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/family-recipes/"}},{"tag":{"context_type":"convenience","created_at":"2011-04-01T15:30:50-04:00","id":10316,"name":"Freezable","rc_tag_id":"10443.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/freezer-recipes/"}},{"tag":{"context_type":"convenience","created_at":"2011-04-01T15:30:50-04:00","id":10318,"name":"Kid-Friendly","rc_tag_id":"10445.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/kids/"}},{"tag":{"context_type":"convenience","created_at":"2011-04-01T15:30:50-04:00","id":10319,"name":"Make-Ahead","rc_tag_id":"10446.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/make-ahead-recipes/"}},{"tag":{"context_type":"convenience","created_at":"2011-04-01T15:30:50-04:00","id":10322,"name":"Quick/Easy","rc_tag_id":"10449.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/quick-and-easy/"}}],"cooking_methods":[{"tag":{"context_type":"cooking_method","created_at":"2011-04-01T15:30:50-04:00","id":10281,"name":"Slow Cook","rc_tag_id":"10408.0","updated_at":"2012-06-26T10:44:43-04:00","url":"http://www.myrecipes.com/slow-cooker-recipes/"}}],"owner_name":null,"thumbnail_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg","user_search_url":null,"default_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg","expanded_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-x.jpg","recipe_meta_data":{"ad_publication":"Southern Living","ad_cookbook":null,"ad_course":"Main Dishes","ad_cuisine":"","ad_mainIng":"Beef","excludeIng":"","ad_specialIng":"","ad_diet":"","ad_prep":"Slow Cook","ad_convenience":"Family,Freezable,Kid-Friendly,Make-Ahead,Quick/Easy","ad_season":"","ad_franchise":null,"ad_key_value_pairs":null,"cook_time":"480","costperserving":null},"main_image_data":{"title":"Slow-cooker Beef Brisket","caption":null,"source":"Southern Living","flag_count":null,"profile_id":null,"imageable_id":70116,"imageable_type":"Recipe","tips_id":"10001791409882","small_image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-s.jpg","medium_image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-m.jpg","large_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg","extra_large_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-x.jpg","user_photo_file_name":null,"user_photo_content_type":null,"user_photo_file_size":null,"created_at":"2013-06-03T18:12:31-04:00","updated_at":"2013-09-26T18:54:58-04:00","source_logo_url":"http://img4.myrecipes.com/static/i/from_southernliving.png","source_link_url":"http://www.southernliving.com/","is_primary":true},"editorial_recipe_data":{"ad_key_value_pairs":null,"author":"Wanda Jensen, El Paso, Texas","bitly_url":null,"chef":null,"cookbook":null,"cookbook_credit":null,"cost_per_serving":null,"extra_large_image_caption":null,"extra_large_image_photo_credit":null,"extra_large_image_title":"Slow-cooker Beef Brisket","extra_large_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-x.jpg","franchise":null,"id":70114,"internal_publication_url":"http://www.myrecipes.com/southern-living-recipes/","kitchen_test_notes":"&lt;p&gt;Select a brisket that is uniform in thickness to make shredding the meat easier.&lt;/p&gt;","large_image_caption":null,"large_image_photo_credit":null,"large_image_title":"Slow-cooker Beef Brisket","large_image_url":"http://img4-3.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-l.jpg","last_modified_at":"2013-06-27T14:27:51-04:00","medium_image_caption":null,"medium_image_photo_credit":null,"medium_image_title":"Slow-cooker Beef Brisket","medium_image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-m.jpg","menu_image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-s.jpg","menu_tips_id":"10000001977579","menu_title":"Midweek Beef Brisket Menu","nutritional_info":[],"omit_from_search":false,"publication":"Southern Living","publication_date":"2006-08-01T00:00:00-04:00","publication_is_partner":false,"publication_link_url":"http://www.southernliving.com/","publication_logo_url":"http://img4.myrecipes.com/static/i/from_southernliving.png","recipe_id":70116,"rendered_at":"2013-09-26T18:52:38-04:00","restaurant":null,"seo_description":"Slow-cooker beef brisket is a wonderfully easy way to prepare this cut of beef. Serve shredded brisket on top of tortillas with your choice of toppings for a creative taco night.","seo_keywords":"beef brisket slow cooker, slow cooker brisket, crock pot brisket, beef brisket crock pot","seo_title":"Slow-cooker Beef Brisket Recipe","servings_yield":"Makes 6 servings","slideshow_image_url":null,"slideshow_title":null,"slideshow_url":null,"small_image_caption":null,"small_image_photo_credit":null,"small_image_title":"Slow-cooker Beef Brisket","small_image_url":"http://img4-1.myrecipes.timeinc.net/i/recipes/sl/06/08/beef-brisket-sl-1218726-s.jpg","tips_id":"10000001218726","tips_seo_slug":"slow-cooker-beef-brisket","tkg":true,"updated_at":"2013-09-26T18:54:58-04:00","video_image_url":null,"video_link":null,"video_title":null}}}.recipe;
+</script></div>
+		</div>&#13;
+	</div>&#13;
+	<!-- SSi Include  /static/inc/footer.html -->
+<!-- SSi Include  /static/inc/footer-no-ad.html -->&#13;
+<div class="footer">&#13;
+	<div class="navRepeat clr">&#13;
+		<ul><li><a href="http://www.myrecipes.com/recipe-finder/"><span>Recipes</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/r/my_recipe_file/"><span>My Recipe File</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/quick-and-easy/"><span>Quick &amp; Easy</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/menus/"><span>Menus</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/healthy-diet/"><span>Healthy</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/how-to/video/cooking-videos-00420000005876/"><span>How-To Video</span></a></li>&#13;
+			<li><a href="http://www.myrecipes.com/kids/"><span>Kids</span></a></li>&#13;
+      <li class="rotating-channel"><a href="http://www.myrecipes.com/casserole-recipes/"><span>Casseroles</span></a></li>&#13;
+      <li class="rotating-channel"><a href="http://www.myrecipes.com/halloween-recipes/"><span>Halloween</span></a></li>&#13;
+		</ul></div>&#13;
+	<div class="wrap2">&#13;
+		<div class="ftLogo">&#13;
+			<a href="http://www.myrecipes.com/"><img src="http://img4.myrecipes.com/static/i/logo_myrecipes_header.gif" alt="My Recipes" /></a>&#13;
+		</div>&#13;
+		<div class="ftConnect">&#13;
+			<h5>Stay connected with MyRecipes</h5>&#13;
+			<a class="facebook" href="http://www.facebook.com/pages/MyRecipescom/74052302134/?ref=ts" target="_blank">Join us on Facebook</a>&#13;
+			<a class="twitter" href="http://twitter.com/my_recipes/" target="_blank">Follow us on Twitter</a>&#13;
+			<a class="mobile" href="http://www.myrecipes.com/m/">Mobile</a>&#13;
+			<a class="newsletter" href="http://www.myrecipes.com/newsletter/">Sign up for Newsletters</a>&#13;
+			<div class="addTo">&#13;
+				<div class="getRSSList">&#13;
+					<div class="label">Add MyRecipes to:</div>&#13;
+					<a href="http://add.my.yahoo.com/content?.intl=us&amp;url=http://rss.myrecipes.com/web/recipes/rss/editors-picks/index.xml" rel="nofollow" target="_blank">My Yahoo!</a>&#13;
+					<a href="http://www.google.com/ig/add?feedurl=http://rss.myrecipes.com/web/recipes/rss/editors-picks/index.xml" rel="nofollow" target="_blank">My Google</a>&#13;
+					<a href="http://my.msn.com/addtomymsn.armx?m=1&amp;ru=http%3A%2F%2Frss%2Emyrecipes%2Ecom%2Fweb%2Frecipes%2Frss%2Feditors%2Dpicks%2Findex%2Exml&amp;id=rss&amp;ut=http%3A%2F%2Frss%2Emyrecipes%2Ecom%2Fweb%2Frecipes%2Frss%2Feditors%2Dpicks%2Findex%2Exml" rel="nofollow" target="_blank">My MSN</a>&#13;
+					<a href="http://www.netvibes.com/subscribe.php?url=http://rss.myrecipes.com/web/recipes/rss/editors-picks/index.xml" rel="nofollow" target="_blank">My Netvibes</a>&#13;
+				</div>&#13;
+			</div>&#13;
+			<a class="subscribe" href="https://subscription.timeinc.com/storefront/link/1004465.html">Subscribe to Our Magazines</a>&#13;
+			<a class="give" href="https://subscription.cookinglight.com/storefront/subscribe-to-cooking-light/site/ck-gift0110.html?xid=myrdonor_ck&amp;link=1003789" target="_blank">Give a Gift</a>&#13;
+		</div>&#13;
+		<script type="text/javascript">addTo();</script><div class="ftLinks">&#13;
+			<a href="http://www.myrecipes.com/about-us/">About</a> |&#13;
+			<a href="http://www.myrecipes.com/advertising/">Advertising</a> |&#13;
+			<a href="http://www.timeinc.com/careers/" target="_blank">Careers</a> |&#13;
+			<a href="http://www.myrecipes.com/contact-us/">Contact</a> |&#13;
+			<a href="http://www.myrecipes.com/frequently-asked-questions/">FAQ</a> |&#13;
+			<a href="http://www.myrecipes.com/press/">Press</a> |&#13;
+			<a href="http://www.myrecipes.com/rss/">RSS</a> |&#13;
+			<a href="http://www.myrecipes.com/static/sitemap/">Site Map</a> |&#13;
+			<a href="http://www.myrecipes.com/contests-and-sweepstakes/recipe-contests-sweepstakes-00420000000466/">Sweepstakes &amp; Contests</a>&#13;
+		</div>&#13;
+	</div><!-- /div.wrap2 -->&#13;
+</div><!-- /div.footer -->&#13;
+<!-- SSi Include  /static/inc/footer-js.html -->&#13;
+<script type="text/javascript" src="http://js.revsci.net/gateway/gw.js?csid=H07710"></script><script type="text/javascript">TiiAdTrackRevSci();</script><!-- Quantcast Tag START --><script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script><script type="text/javascript">&#13;
+	_qacct='p-5dyPa639IrgIw';&#13;
+	quantserve();&#13;
+</script><noscript>&#13;
+	<a href="http://www.quantcast.com/p-5dyPa639IrgIw" target="_blank">&#13;
+		<img src="http://pixel.quantserve.com/pixel/p-5dyPa639IrgIw.gif" alt="" style="display: none;" border="0" height="1" width="1" /></a>&#13;
+</noscript>&#13;
+<!-- Quantcast Tag END -->&#13;
+<div class="copyright">
+   <div class="wrap2">
+      			
+			
+			Copyright &#169; 2013 Time Inc. Lifestyle Group. All Rights Reserved. Use of this site constitutes acceptance of our <a href="http://cgi.timeinc.net/cgi-bin/mail/dnp/terms_of_service.cgi/myrecipes" target="_blank">Terms of Use</a> and 
+<a href="https://subscription.timeinc.com/storefront/privacy/myrecipes/generic_privacy_new.html?dnp-source=E" target="_blank">Privacy Policy</a>
+<a href="https://subscription.timeinc.com/storefront/privacy/myrecipes/generic_privacy_new.html?dnp-source=E#california" target="_blank">(Your California Privacy Rights)</a>. 
+<a class="adchoice" href="http://subscription-assets.timeinc.com/prod/assets/themes/magazines/default/template-resources/html/legal/ti-corp-behavioral.html" target="_blank">Ad Choices</a>
+   </div>
+</div>&#13;
+
+<script type="text/javascript" src="http://img4.myrecipes.com/static/j/jumptime.js?buildlife=60715"></script><div class="wrap2">
+	<div class="adTop">&#13;
+	<script type="text/javascript">&#13;
+		if (typeof adFactory != 'undefined') {&#13;
+			var ad = adFactory.getAd(728,90);&#13;
+			ad.setPosition(1);&#13;
+			ad.write();&#13;
+		}&#13;
+	</script></div>
+</div>
+&#13;
+</div>
+<script src="http://img4.myrecipes.com/static/j/recipe.js?buildlife=60715" type="text/javascript"></script><script src="http://widgets.outbrain.com/outbrain.js" type="text/javascript"></script></body>
+</html>

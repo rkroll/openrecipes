@@ -5,6 +5,7 @@ def clean(param):
   data = re.sub( '\s+', ' ', data).strip()
   return data
 
+
 def _parse(root, schema, data={}):
   rootStr = root.extract()
   attrMap = {
@@ -17,6 +18,7 @@ def _parse(root, schema, data={}):
     'datePublished': '@content',
     }
   data['itemtype'] = schema
+  data['url'] = root.select('//meta[@property="og:url"]/@content').extract()
   props = root.select('.//*[@itemprop]')
   for prop in props:
     node = prop
@@ -28,6 +30,8 @@ def _parse(root, schema, data={}):
       if node.extract() == rootStr:
         break
       if node.select('@itemscope'):
+        # need to recurse into itemscopes
+        #_parse(prop, node.select('@itemtype').extract()[0])
         skip = True
         break
 
@@ -39,7 +43,7 @@ def _parse(root, schema, data={}):
     if prop.select('@itemscope'):
       value = _parse(prop, prop.select('@itemtype').extract()[0])
     else:
-      value = [clean(' '.join(prop.select(attrMap.get(name, ".//text()[normalize-space()]")).extract()).strip())]
+      value = [clean(' '.join(prop.select(attrMap.get(name, ".//text()[normalize-space()]")).extract()))]
 
     if prevValue is None:
       data[name] = value
@@ -52,5 +56,9 @@ def _parse(root, schema, data={}):
 def parse_recipes(scope, data={}):
   schema = 'http://schema.org/Recipe'
   recipes = [_parse(recipe, schema, data) for recipe in scope.select('//*[@itemtype="%s"]' % schema)]
+
+  for recipe in recipes:
+    if 'photo' in recipe and 'image' not in recipe:
+      recipe['image'] = recipe['photo']
 
   return recipes

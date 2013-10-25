@@ -1,8 +1,8 @@
 from scrapy.contrib.loader import ItemLoader
 from scrapy.contrib.loader.processor import Compose, MapCompose, TakeFirst, Join
 from scrapy.item import Item, Field
-from openrecipes.util import strip_html, trim_whitespace, get_isodate, get_isoduration
-
+from scrapy import log
+from openrecipes.util import strip_html, trim_whitespace, get_isodate, get_isoduration, clean
 
 def filter_ingredients(x):
     return None if 'ingredient' in x.lower() else x
@@ -27,12 +27,13 @@ class RecipeItemLoader(ItemLoader):
     cookTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
     ingredients_out = MapCompose(strip_html, trim_whitespace, filter_ingredients)
     prepTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
-    recipeCategory_out = Compose(TakeFirst(), trim_whitespace)
+    recipeCategory_out = MapCompose(strip_html, trim_whitespace)
     recipeCuisine_out = Compose(TakeFirst(), trim_whitespace)
     recipeDiet_out = Compose(TakeFirst(), trim_whitespace)
     recipeInstructions_out = Compose(TakeFirst(), trim_whitespace)
     recipeYield_out = Compose(TakeFirst(), strip_html, trim_whitespace)
     totalTime_out = Compose(TakeFirst(), strip_html, get_isoduration)
+    aggregateRating_out = Compose(TakeFirst(), strip_html, trim_whitespace)
 
     calories_out = Compose(TakeFirst(), trim_whitespace)
     carbohydrateContent_out = Compose(TakeFirst(), trim_whitespace)
@@ -46,7 +47,6 @@ class RecipeItemLoader(ItemLoader):
     sugarContent_out = Compose(TakeFirst(), trim_whitespace)
     transFatContent_out = Compose(TakeFirst(), trim_whitespace)
     unsaturatedFatContent_out = Compose(TakeFirst(), trim_whitespace)
-
 
 class RecipeItem(Item):
     """
@@ -97,6 +97,7 @@ class RecipeItem(Item):
     recipeInstructions = Field()  # we don't currently populate this
     recipeYield = Field()
     totalTime = Field()  # ISO 8601 Duration
+    aggregateRating = Field()
 
     # Nutrition
     calories = Field()  # Energy. E.g., "100 calories" http://schema.org/Energy
