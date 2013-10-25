@@ -70,7 +70,7 @@ def handle_schema_org(microdata, d):
   recipe['cookTime'] = microdata.cookTime
   recipe['prepTime'] = microdata.prepTime
   recipe['totalTime'] = microdata.totalTime
-  recipe['recipeCategory'] = ",".join(microdata.get_all('recipeCategory'))
+  recipe['recipeCategory'] = microdata.get_all('recipeCategory')
   recipe['recipeInstructions'] = microdata.recipeInstructions
 
   if microdata.aggregateRating is not None: recipe['aggregateRating'] = microdata.aggregateRating.ratingValue
@@ -119,7 +119,7 @@ def handle_data_vocab(microdata, d):
   recipe['cookTime'] = microdata.get('cookTime')
   recipe['prepTime'] = microdata.prepTime
   recipe['totalTime'] = microdata.totalTime
-  recipe['recipeCategory'] = ",".join(microdata.get_all('recipeType'))
+  recipe['recipeCategory'] = microdata.get_all('recipeType')
 
   recipe['recipeInstructions'] = microdata.instructions
 

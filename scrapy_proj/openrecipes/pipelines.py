@@ -169,6 +169,7 @@ def createRecipe(self, session, publisher, item):
 
 def updateRecipe(self, session, recipe, item):
   itemIngredients = item['ingredients']
+  categories = item['recipeCategory']
 
   # Regenerate the ingredients for the recipe
   recipe.ingredients = []
@@ -181,6 +182,14 @@ def updateRecipe(self, session, recipe, item):
     ingredient = RecipeIngredients(ingredient=ing)
     ingredient.recipe_id = recipe.id
     session.add(ingredient)
+
+  for cat in categories:
+    category = session.query(Category).filter_by(name=cat).first()
+
+    if category is None:
+      category = Category(name=cat)
+      session.add(category)
+      session.commit()
 
 
 class DatabasePipeline(object):
