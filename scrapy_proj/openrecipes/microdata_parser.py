@@ -2,7 +2,7 @@ from microdata import URI
 import microdata
 from scrapy import log
 from scrapy.selector import HtmlXPathSelector
-
+import urlparse
 
 def extract_facebook_images(response):
   # try facebook images
@@ -14,10 +14,13 @@ def extract_facebook_images(response):
   for image in image_scopes:
     images.append(image.extract())
 
-  if len(images) > 1:
+  if len(images) >= 1:
     return images.pop()
   else:
     return None
+
+def is_absolute(url):
+  return bool(urlparse.urlparse(str(url)).scheme)
 
 def parse_recipes(response, data={}):
   recipes = []
@@ -39,11 +42,16 @@ def parse_recipes(response, data={}):
 
     if 'image' in recipe:
       img = recipe['image']
+      fb_image = extract_facebook_images(response)
 
       if type(img) is str or type(img) is unicode and img.startswith('//'):
         recipe['image'] = extract_facebook_images(response)
       elif type(img) is URI and img.string.startswith('//'):
         recipe['image'] = extract_facebook_images(response)
+
+      # favor facebook image
+      if img != fb_image and fb_image is not None:
+        recipe['image'] = fb_image;
 
     recipe['source'] = data['source']
     recipes.append(recipe)
@@ -59,18 +67,18 @@ def handle_schema_org(microdata, d):
 
   if microdata.image is not None: recipe['image'] = microdata.image.string
 
-  if microdata.url is not None: recipe['url'] = microdata.url
-  if microdata.url is None: recipe['url'] = d['url']
+  if microdata.url is not None and is_absolute(microdata.url): recipe['url'] = microdata.url
+  if 'url' not in recipe: recipe['url'] = d['url']
 
   recipe['creator'] = microdata.creator
-  recipe['ingredients'] = microdata.get_all('ingredients')
+  recipe['ingredients'] = set(microdata.get_all('ingredients'))
   recipe['datePublished'] = microdata.datePublished
   recipe['dateCreated'] = microdata.dateCreated
   recipe['recipeYield'] = microdata.recipeYield
   recipe['cookTime'] = microdata.cookTime
   recipe['prepTime'] = microdata.prepTime
   recipe['totalTime'] = microdata.totalTime
-  recipe['recipeCategory'] = microdata.get_all('recipeCategory')
+  recipe['recipeCategory'] = set(microdata.get_all('recipeCategory'))
   recipe['recipeInstructions'] = microdata.recipeInstructions
 
   if microdata.aggregateRating is not None: recipe['aggregateRating'] = microdata.aggregateRating.ratingValue
