@@ -2,7 +2,6 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from openrecipes.items import RecipeItem, RecipeItemLoader
 from openrecipes.microdata_parser import parse_recipes
-import microdata
 
 class FoodMixin(object):
     source = 'food'
