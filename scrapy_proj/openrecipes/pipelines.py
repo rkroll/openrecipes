@@ -135,10 +135,14 @@ class CleanDatesTimesPipeline(object):
 
 def createRecipe(self, session, publisher, item):
   itemIngredients = item['ingredients']
-  categories = item['recipeCategory']
+
+  categories = []
+
+  if 'recipeCategory' in item:
+    categories = item['recipeCategory']
+    del item['recipeCategory']
 
   del item['ingredients']
-  del item['recipeCategory']
 
   recipe = Recipes(**item)
   recipe.valid_recipe = True
@@ -169,7 +173,10 @@ def createRecipe(self, session, publisher, item):
 
 def updateRecipe(self, session, recipe, item):
   itemIngredients = item['ingredients']
-  categories = item['recipeCategory']
+  categories = []
+
+  if 'recipeCategory' in item:
+    categories = item['recipeCategory']
 
   # Regenerate the ingredients for the recipe
   recipe.ingredients = []
