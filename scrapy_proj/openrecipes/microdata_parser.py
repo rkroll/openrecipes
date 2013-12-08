@@ -53,6 +53,9 @@ def parse_recipes(response, data={}):
       if img != fb_image and fb_image is not None:
         recipe['image'] = fb_image;
 
+      if recipe['image'] is not None and recipe['image'].startswith('//'):
+        recipe['image'] = 'http:' + recipe['image']
+
     recipe['source'] = data['source']
     recipes.append(recipe)
 
